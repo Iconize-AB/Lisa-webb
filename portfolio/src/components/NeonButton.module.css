@@ -1,0 +1,69 @@
+.neonButton {
+  width: 200px;
+  height: 240px;
+  background: #000000;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.neonButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 33.33%;
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.neonButton::after {
+  content: '';
+  position: absolute;
+  top: 33.33%;
+  left: 0;
+  right: 0;
+  height: 33.33%;
+  background: #080808;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.topText {
+  color: #333333;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+.bottomText {
+  color: #ff00ff;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 15%;
+  width: 100%;
+  text-align: center;
+  text-shadow: 0 0 10px #ff00ff,
+               0 0 20px #ff00ff;
+  animation: neonPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+} 
