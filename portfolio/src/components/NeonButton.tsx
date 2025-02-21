@@ -13,7 +13,11 @@ const NeonButton = ({ topText, bottomText }: NeonButtonProps) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push('/about');
+    if (topText === "HOME") {
+      router.push('/');
+    } else {
+      router.push('/about');
+    }
   };
 
   return (
