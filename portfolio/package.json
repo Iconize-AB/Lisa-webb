@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "framer-motion": "^12.4.7",
+    "gsap": "^3.12.7",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "sass": "^1.85.0"
+    "sass": "^1.85.0",
+    "tailwind-scrollbar-hide": "^2.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
