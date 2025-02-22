@@ -1,13 +1,11 @@
 html {
   scroll-behavior: smooth;
-  background-color: black;
   height: 100%;
 }
 
 body {
   font-family: var(--font-geist-sans);
   min-height: ${projects.length * 100}vh;
-  background-color: black;
   overflow-x: hidden;
 }
 

@@ -137,3 +137,22 @@ h1.title {
     }
   }
 } 
+
+.stackingcard {
+  position: absolute;
+  width: 100%;
+  cursor: pointer;
+  transform-origin: center;
+}
+
+.stackingcards {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active {
+  z-index: 999;
+}

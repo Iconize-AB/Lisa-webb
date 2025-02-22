@@ -101,10 +101,6 @@ export default function ScrollingProjects() {
               <div className="image-container">
                 <img src={project.image} alt={project.title} />
               </div>
-              <div className="text-content">
-                <h3 className="title">{project.title}</h3>
-                <div className="text">{project.text}</div>
-              </div>
             </div>
           </div>
         ))}
