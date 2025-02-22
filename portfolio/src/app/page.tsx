@@ -7,7 +7,7 @@ export default function Home(): JSX.Element {
   return (
     <>
       <Header/>
-      <main className="min-h-screen flex flex-col items-center justify-center bg-white">
+      <main className="min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden max-w-screen">
         <StackingCards />
       </main>
     </>
