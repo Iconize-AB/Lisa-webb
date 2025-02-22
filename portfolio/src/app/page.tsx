@@ -3,7 +3,7 @@
 import Header from "./Header";
 import StackingCards from "../components/StackingCards";
 
-export default function Home(): JSX.Element {
+export default function Home() {
   return (
     <>
       <Header/>
