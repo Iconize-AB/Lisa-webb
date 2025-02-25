@@ -4,6 +4,7 @@ import { useState } from 'react';
 import NeonButton from "../../components/NeonButton";
 import styles from './page.module.css';
 import Header from '../Header';
+import Footer from '../Footer';
 
 
 export default function About() {
@@ -78,6 +79,53 @@ export default function About() {
           </div>
         </div>
 
+        {/* Team Members Section */}
+        <div className="mt-32">
+          <h3 className="text-xl mb-8">ABOUT US</h3>
+          <div className="grid grid-cols-4 gap-8">
+            <div>
+              <img 
+                src="/Ivar.jpeg" 
+                alt="Love Molin" 
+                className="aspect-square object-cover w-full mb-4"
+              />
+              <p>(L)ove Molin</p>
+            </div>
+            <div>
+              <img 
+                src="/Ivar.jpeg" 
+                alt="Ivar" 
+                className="aspect-square object-cover w-full mb-4"
+              />
+              <p>(I)var</p>
+            </div>
+            <div>
+              <img 
+                src="/Ivar.jpeg" 
+                alt="Seb" 
+                className="aspect-square object-cover w-full mb-4"
+              />
+              <p>(S)eb</p>
+            </div>
+            <div>
+              <img 
+                src="/Ivar.jpeg" 
+                alt="Albert" 
+                className="aspect-square object-cover w-full mb-4"
+              />
+              <p>(A)lbert</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Clients Section */}
+        <div className="mt-32">
+          <h3 className="text-xl mb-8">Our Bitches</h3>
+          <p className="text-2xl font-light">
+            Berghs SOC / Hyllie Bryggeri / Searchintent / Dubble Deli / Volanders
+          </p>
+        </div>
+
         {/* Contact Information - Positioned Absolutely */}
         <div className="absolute top-0 right-0 text-right">
           <div className="mb-8">
@@ -108,6 +156,7 @@ export default function About() {
         </div>
       </div>
     </main>
+    <Footer />
     </>
   );
 } 

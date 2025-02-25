@@ -105,8 +105,12 @@ const StackingCards = () => {
   const titleRef = useRef(null);
   const spacerRef = useRef(null);
   const [selectedProject, setSelectedProject] = useState(null);
-  // Initialize focusedProject with the last project's name
-  const [focusedProject, setFocusedProject] = useState(projects[projects.length - 1].projectName);
+  // Initialize focusedProject with the first project's name
+  const [focusedProject, setFocusedProject] = useState(projects[0].projectName);
+
+  console.log("selectedProject", selectedProject);
+
+  console.log("focusedProject", focusedProject);
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
@@ -121,64 +125,76 @@ const StackingCards = () => {
   };
 
   useEffect(() => {
-    const cards = gsap.utils.toArray('.stackingcard');
-    const lastCardIndex = cards.length - 1;
+    // Reset scroll position when component mounts
+    window.scrollTo(0, 0);
 
-    // Calculate total scroll height needed
-    const totalHeight = (cards.length * 40) + window.innerHeight;
-    if (spacerRef.current) {
-      spacerRef.current.style.height = `${totalHeight}px`;
-    }
+    // Wait for next frame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      const cards = gsap.utils.toArray('.stackingcard');
+      const lastCardIndex = cards.length - 1;
 
-    // Scroll to position where last card is in focus
-    window.scrollTo({
-      top: lastCardIndex * 40,
-      behavior: 'instant'
-    });
+      // Calculate total scroll height needed
+      const totalHeight = (cards.length * 40) + window.innerHeight;
+      if (spacerRef.current) {
+        spacerRef.current.style.height = `${totalHeight}px`;
+      }
 
-    // Animate each card
-    cards.forEach((card, i) => {
-      // Scale animation
-      gsap.to(card, {
-        scale: () => 0.8 + i * 0.035,
-        ease: 'none',
-        scrollTrigger: {
+      // Clear any existing ScrollTriggers
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+      // Animate each card
+      const cardAnimations = cards.map((card, i) => {
+        // Scale animation
+        const scaleAnim = gsap.to(card, {
+          scale: () => 0.8 + i * 0.035,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: card,
+            start: `top-=${40 * i} 40%`,
+            end: 'top 20%',
+            scrub: true,
+            onEnter: () => setFocusedProject(projects[i].projectName),
+            onEnterBack: () => setFocusedProject(projects[i].projectName),
+          },
+        });
+
+        // Pin animation
+        const pinAnim = ScrollTrigger.create({
           trigger: card,
           start: `top-=${40 * i} 40%`,
-          end: 'top 20%',
-          scrub: true,
-          onEnter: () => setFocusedProject(projects[i].projectName),
-          onEnterBack: () => setFocusedProject(projects[i].projectName),
-        },
+          end: 'top center',
+          endTrigger: '.end-element',
+          pin: true,
+          pinSpacing: false,
+          id: `card-${i}`,
+        });
+
+        return [scaleAnim, pinAnim];
       });
 
-      // Pin animation
-      ScrollTrigger.create({
-        trigger: card,
-        start: `top-=${40 * i} 40%`,
-        end: 'top center',
-        endTrigger: '.end-element',
+      // Pin title
+      const titlePin = ScrollTrigger.create({
+        trigger: titleRef.current,
+        start: 'top 10%',
+        end: (self) => self.previous().end,
         pin: true,
         pinSpacing: false,
-        id: `card-${i}`,
+        id: 'title',
       });
-    });
 
-    // Pin title
-    ScrollTrigger.create({
-      trigger: titleRef.current,
-      start: 'top 10%',
-      end: (self) => self.previous().end,
-      pin: true,
-      pinSpacing: false,
-      id: 'title',
+      // Cleanup
+      return () => {
+        cardAnimations.flat().forEach(anim => {
+          if (anim.kill) anim.kill();
+          if (anim.scrollTrigger) anim.scrollTrigger.kill();
+        });
+        titlePin.kill();
+        if (spacerRef.current) {
+          spacerRef.current.style.height = '0px';
+        }
+      };
     });
-
-    // Cleanup
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, []);
+  }, []); // Empty dependency array to run only on mount
 
   return (
     <Wrapper ref={wrapperRef}>
@@ -206,10 +222,10 @@ const StackingCards = () => {
           <OverlayContent>
             <ProjectHero>
               <HeroImage src={selectedProject.images[0]} alt={selectedProject.projectName} />
-              <HeroTitle>{selectedProject.title}</HeroTitle>
             </ProjectHero>
 
             <ProjectSection>
+              <HeroTitle>{selectedProject.title}</HeroTitle>
               <SectionTitle>BACKGROUND</SectionTitle>
               <SectionText>{selectedProject.background}</SectionText>
             </ProjectSection>
@@ -219,6 +235,12 @@ const StackingCards = () => {
               <SectionText>{selectedProject.solution}</SectionText>
             </ProjectSection>
 
+
+            <ProjectGallery>
+              {selectedProject.images.slice(1).map((image, index) => (
+                <GalleryImage key={index} src={image} alt={`Project detail ${index + 1}`} />
+              ))}
+            </ProjectGallery>
             <ProjectDetails>
               <DetailItem>
                 <DetailLabel>Role</DetailLabel>
@@ -233,12 +255,6 @@ const StackingCards = () => {
                 <DetailText>{selectedProject.details.technologies.join(', ')}</DetailText>
               </DetailItem>
             </ProjectDetails>
-
-            <ProjectGallery>
-              {selectedProject.images.slice(1).map((image, index) => (
-                <GalleryImage key={index} src={image} alt={`Project detail ${index + 1}`} />
-              ))}
-            </ProjectGallery>
           </OverlayContent>
         </ProjectOverlay>
       )}
@@ -321,6 +337,7 @@ const CloseButton = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
+  color: white;
   font-size: 2rem;
   background: none;
   border: none;
@@ -331,8 +348,6 @@ const CloseButton = styled.button`
 
 const OverlayContent = styled.div`
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
 `;
 
 const ProjectHero = styled.div`
@@ -351,9 +366,8 @@ const HeroImage = styled.img`
 `;
 
 const HeroTitle = styled.h1`
-  position: absolute;
+  position: relative;
   bottom: 5rem;
-  left: 5rem;
   font-size: 4rem;
   color: black;
   font-weight: bold;
@@ -362,7 +376,6 @@ const HeroTitle = styled.h1`
 
 const ProjectSection = styled.div`
   padding: 5rem;
-  max-width: 800px;
   margin: 0 auto;
 `;
 
