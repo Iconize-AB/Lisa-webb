@@ -18,6 +18,8 @@ const projects = [
     images: [
       '/berghs.png',
       '/berghs.png',
+      '/berghs.png',
+      '/berghs.png',
       '/berghs.png'
     ],
     details: {
@@ -34,9 +36,11 @@ const projects = [
     background: 'In todays fast-paced and forward-moving world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with anxiety and stress, yet traditional meditation practices can feel inaccessible or intimidating.',
     solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
     images: [
-      '/berghs.png',
-      '/berghs.png',
-      '/berghs.png'
+      '/berghs/Berghs_popup_16_9 copy.png',
+      '/berghs/flagga_berghs.png',
+      '/berghs/Monter.png',
+      '/berghs/skylt_berghs.png',
+      '/berghs/VATTENFLASKA_BERGHS copy.png'
     ],
     details: {
       role: 'Lead Designer',
@@ -52,6 +56,8 @@ const projects = [
     background: 'In todays fast-paced and forward-moving world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with anxiety and stress, yet traditional meditation practices can feel inaccessible or intimidating.',
     solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
     images: [
+      '/project2.png',
+      '/project2.png',
       '/project2.png',
       '/project2.png',
       '/project2.png'
@@ -72,6 +78,8 @@ const projects = [
     images: [
       '/project3.png',
       '/project3.png',
+      '/project3.png',
+      '/project3.png',
       '/project3.png'
     ],
     details: {
@@ -88,6 +96,8 @@ const projects = [
     background: 'In todays fast-paced and forward-moving world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with anxiety and stress, yet traditional meditation practices can feel inaccessible or intimidating.',
     solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
     images: [
+      '/berghs.png',
+      '/berghs.png',
       '/berghs.png',
       '/berghs.png',
       '/berghs.png'
@@ -125,16 +135,14 @@ const StackingCards = () => {
   };
 
   useEffect(() => {
-    // Reset scroll position when component mounts
     window.scrollTo(0, 0);
 
-    // Wait for next frame to ensure DOM is ready
     requestAnimationFrame(() => {
       const cards = gsap.utils.toArray('.stackingcard');
       const lastCardIndex = cards.length - 1;
 
-      // Calculate total scroll height needed
-      const totalHeight = (cards.length * 40) + window.innerHeight;
+      // Adjust total height calculation to account for the last card
+      const totalHeight = (cards.length - 1) * 40 + window.innerHeight * 0.6;
       if (spacerRef.current) {
         spacerRef.current.style.height = `${totalHeight}px`;
       }
@@ -144,7 +152,6 @@ const StackingCards = () => {
 
       // Animate each card
       const cardAnimations = cards.map((card, i) => {
-        // Scale animation
         const scaleAnim = gsap.to(card, {
           scale: () => 0.8 + i * 0.035,
           ease: 'none',
@@ -158,12 +165,12 @@ const StackingCards = () => {
           },
         });
 
-        // Pin animation
+        // Modified pin animation
         const pinAnim = ScrollTrigger.create({
           trigger: card,
           start: `top-=${40 * i} 40%`,
-          end: 'top center',
-          endTrigger: '.end-element',
+          end: i === lastCardIndex ? `+=${window.innerHeight}` : 'top center',
+          endTrigger: i === lastCardIndex ? card : '.end-element',
           pin: true,
           pinSpacing: false,
           id: `card-${i}`,
@@ -313,7 +320,7 @@ const CardImage = styled.img`
 `;
 
 const EndElement = styled.div`
-  height: 100vh;
+  height: 0;
 `;
 
 const Spacer = styled.div`
@@ -397,7 +404,6 @@ const ProjectDetails = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   padding: 5rem;
-  background: #f5f5f5;
 `;
 
 const DetailItem = styled.div`
@@ -419,16 +425,38 @@ const DetailText = styled.span`
 
 const ProjectGallery = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 2rem;
-  padding: 5rem;
+  padding: 2rem;
+
+  img:first-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 16/9;
+  }
+
+  img:not(:first-child) {
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
+
+  img:last-child {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    
+    img:first-child {
+      grid-column: 1 / -1;
+    }
+  }
 `;
 
 const GalleryImage = styled.img`
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 0;
 `;
 
 export default StackingCards;
