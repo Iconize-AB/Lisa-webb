@@ -115,7 +115,6 @@ const StackingCards = () => {
   const titleRef = useRef(null);
   const spacerRef = useRef(null);
   const [selectedProject, setSelectedProject] = useState(null);
-  // Initialize focusedProject with the first project's name
   const [focusedProject, setFocusedProject] = useState(projects[0].projectName);
 
   console.log("selectedProject", selectedProject);
@@ -172,73 +171,83 @@ const StackingCards = () => {
     });
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  // Add this function to handle the animation setup
+  const setupAnimations = () => {
+    const cards = gsap.utils.toArray('.stackingcard');
+    const lastCardIndex = cards.length - 1;
 
-    requestAnimationFrame(() => {
-      const cards = gsap.utils.toArray('.stackingcard');
-      const lastCardIndex = cards.length - 1;
+    // Adjust total height calculation
+    const totalHeight = (cards.length - 1) * 40 + window.innerHeight * 0.6;
+    if (spacerRef.current) {
+      spacerRef.current.style.height = `${totalHeight}px`;
+    }
 
-      // Adjust total height calculation to account for the last card
-      const totalHeight = (cards.length - 1) * 40 + window.innerHeight * 0.6;
-      if (spacerRef.current) {
-        spacerRef.current.style.height = `${totalHeight}px`;
-      }
+    // Clear existing ScrollTriggers
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
-      // Clear any existing ScrollTriggers
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-
-      // Animate each card
-      const cardAnimations = cards.map((card, i) => {
-        const scaleAnim = gsap.to(card, {
-          scale: () => 0.8 + i * 0.035,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: card,
-            start: `top-=${40 * i} 40%`,
-            end: 'top 20%',
-            scrub: true,
-            onEnter: () => setFocusedProject(projects[i].projectName),
-            onEnterBack: () => setFocusedProject(projects[i].projectName),
-          },
-        });
-
-        // Modified pin animation
-        const pinAnim = ScrollTrigger.create({
+    // Animate each card
+    const cardAnimations = cards.map((card, i) => {
+      const scaleAnim = gsap.to(card, {
+        scale: () => 0.8 + i * 0.035,
+        ease: 'none',
+        scrollTrigger: {
           trigger: card,
           start: `top-=${40 * i} 40%`,
-          end: i === lastCardIndex ? `+=${window.innerHeight}` : 'top center',
-          endTrigger: i === lastCardIndex ? card : '.end-element',
-          pin: true,
-          pinSpacing: false,
-          id: `card-${i}`,
-        });
-
-        return [scaleAnim, pinAnim];
+          end: 'top 20%',
+          scrub: true,
+          onEnter: () => setFocusedProject(projects[i].projectName),
+          onEnterBack: () => setFocusedProject(projects[i].projectName),
+        },
       });
 
-      // Pin title
-      const titlePin = ScrollTrigger.create({
-        trigger: titleRef.current,
-        start: 'top 10%',
-        end: (self) => self.previous().end,
+      const pinAnim = ScrollTrigger.create({
+        trigger: card,
+        start: `top-=${40 * i} 40%`,
+        end: i === lastCardIndex ? `+=${window.innerHeight}` : 'top center',
+        endTrigger: i === lastCardIndex ? card : '.end-element',
         pin: true,
         pinSpacing: false,
-        id: 'title',
+        id: `card-${i}`,
       });
 
-      // Cleanup
-      return () => {
-        cardAnimations.flat().forEach(anim => {
-          if (anim.kill) anim.kill();
-          if (anim.scrollTrigger) anim.scrollTrigger.kill();
-        });
-        titlePin.kill();
-        if (spacerRef.current) {
-          spacerRef.current.style.height = '0px';
-        }
-      };
+      return [scaleAnim, pinAnim];
     });
+
+    // Pin title
+    const titlePin = ScrollTrigger.create({
+      trigger: titleRef.current,
+      start: 'top 10%',
+      end: (self) => self.previous().end,
+      pin: true,
+      pinSpacing: false,
+      id: 'title',
+    });
+
+    return [...cardAnimations.flat(), titlePin];
+  };
+
+  useEffect(() => {
+    // Scroll to top when component mounts or updates
+    window.scrollTo(0, 0);
+
+    let animations = [];
+
+    // Use a small timeout to ensure DOM is ready
+    const timer = setTimeout(() => {
+      animations = setupAnimations();
+    }, 100);
+
+    // Cleanup function
+    return () => {
+      clearTimeout(timer);
+      animations.forEach(anim => {
+        if (anim.kill) anim.kill();
+        if (anim.scrollTrigger) anim.scrollTrigger.kill();
+      });
+      if (spacerRef.current) {
+        spacerRef.current.style.height = '0px';
+      }
+    };
   }, []); // Empty dependency array to run only on mount
 
   return (

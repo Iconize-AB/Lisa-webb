@@ -1,14 +1,42 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import NeonButton from "../../components/NeonButton";
 import styles from './page.module.css';
 import Header from '../Header';
 import Footer from '../Footer';
 
+// Custom hook definition
+function useInView(options = {}) {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsVisible(entry.isIntersecting);
+    }, { threshold: 0.1, ...options });
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [options]);
+
+  return [ref, isVisible];
+}
 
 export default function About() {
   const [selectedService, setSelectedService] = useState('Branding');
+  const [headerRef, headerVisible] = useInView();
+  const [servicesRef, servicesVisible] = useInView();
+  const [teamRef, teamVisible] = useInView();
+  const [clientsRef, clientsVisible] = useInView();
 
   const services = {
     'Branding': { color: 'text-white' },
@@ -38,21 +66,29 @@ export default function About() {
       {/* Content Section */}
       <div className={`max-w-[1400px] mx-auto relative ${styles.wrapper}`}>
         {/* Header */}
-        <h1 className="text-2xl mb-4">LISA STUDIOS</h1>
-
-        {/* Main Title */}
-        <h2 className="text-[80px] leading-tight font-normal mb-16">
-          Your Creative Directors<br />
-          favorite underdog
-        </h2>
-        
-        {/* Grey Section */}
-        <div className="w-full h-[400px] bg-gray-300 mb-16 mt-16">
-          {/* Placeholder for content/image */}
+        <div
+          ref={headerRef}
+          className={`transition-all duration-1000 ease-out transform ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
+          <h1 className="text-2xl mb-4">LISA STUDIOS</h1>
+          <h2 className="text-[80px] leading-tight font-normal mb-16">
+            Your Creative Directors<br />
+            favorite underdog
+          </h2>
         </div>
         
+        {/* Grey Section */}
+        <div className="w-full h-[400px] bg-gray-300 mb-16 mt-16" />
+        
         {/* Services Section */}
-        <div className="max-w-[1400px] mx-auto flex gap-16">
+        <div
+          ref={servicesRef}
+          className={`max-w-[1400px] mx-auto flex gap-16 transition-all duration-1000 ease-out transform ${
+            servicesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           {/* Services Menu */}
           <div className="w-1/2">
             <h3 className="text-xl mb-8">SERVICES</h3>
@@ -80,7 +116,12 @@ export default function About() {
         </div>
 
         {/* Team Members Section */}
-        <div className="mt-32">
+        <div
+          ref={teamRef}
+          className={`mt-32 transition-all duration-1000 ease-out transform ${
+            teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h3 className="text-xl mb-8">ABOUT US</h3>
           <div className="grid grid-cols-4 gap-8">
             <div>
@@ -119,7 +160,12 @@ export default function About() {
         </div>
 
         {/* Clients Section */}
-        <div className="mt-32">
+        <div
+          ref={clientsRef}
+          className={`mt-32 transition-all duration-1000 ease-out transform ${
+            clientsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h3 className="text-xl mb-8">Our Bitches</h3>
           <p className="text-2xl font-light">
             Berghs SOC / Hyllie Bryggeri / Searchintent / Dubble Deli / Volanders
