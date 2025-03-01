@@ -124,14 +124,52 @@ const StackingCards = () => {
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
-    // Disable scroll when project is open
     document.body.style.overflow = 'hidden';
+    
+    // Use requestAnimationFrame to ensure DOM is updated
+    requestAnimationFrame(() => {
+      const overlay = document.querySelector('.project-overlay');
+      const content = document.querySelector('.overlay-content');
+      
+      if (overlay && content) {
+        overlay.style.visibility = 'visible';
+        content.style.visibility = 'visible';
+        
+        gsap.to(overlay, {
+          opacity: 1,
+          duration: 0.5,
+          ease: 'power2.inOut'
+        });
+
+        gsap.to(content, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.2
+        });
+      }
+    });
   };
 
   const handleCloseProject = () => {
-    setSelectedProject(null);
-    // Re-enable scroll when project is closed
-    document.body.style.overflow = 'unset';
+    const overlay = document.querySelector('.project-overlay');
+    const content = document.querySelector('.overlay-content');
+
+    gsap.to([overlay, content], {
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        setSelectedProject(null);
+        document.body.style.overflow = 'unset';
+        if (overlay && content) {
+          overlay.style.visibility = 'hidden';
+          content.style.visibility = 'hidden';
+        }
+      }
+    });
   };
 
   useEffect(() => {
@@ -224,9 +262,9 @@ const StackingCards = () => {
       
       {/* Project Overlay */}
       {selectedProject && (
-        <ProjectOverlay>
+        <ProjectOverlay className="project-overlay" isVisible={!!selectedProject}>
           <CloseButton onClick={handleCloseProject}>×</CloseButton>
-          <OverlayContent>
+          <OverlayContent className="overlay-content">
             <ProjectHero>
               <HeroImage src={selectedProject.images[0]} alt={selectedProject.projectName} />
             </ProjectHero>
@@ -334,10 +372,12 @@ const ProjectOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: white;
+  background: rgba(255, 255, 255, 1);
   z-index: 1000;
   overflow-y: auto;
-  animation: fadeIn 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  display: ${props => props.isVisible ? 'block' : 'none'};
 `;
 
 const CloseButton = styled.button`
@@ -355,6 +395,9 @@ const CloseButton = styled.button`
 
 const OverlayContent = styled.div`
   width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100px) scale(0.95);
 `;
 
 const ProjectHero = styled.div`
