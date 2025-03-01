@@ -48,7 +48,7 @@ export default function About() {
 
   const serviceContent = {
     'Branding': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
-    'Art Direction': "Different content for Art Direction...",
+    'Art Direction': "Different content for Art Directionkslksdkkddkdkkd",
     'Animation': "Different content for Animation...",
     'Strategy': "Different content for Strategy...",
     'Design': "Different content for Design..."
