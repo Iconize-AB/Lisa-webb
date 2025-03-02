@@ -176,8 +176,8 @@ const StackingCards = () => {
     const cards = gsap.utils.toArray('.stackingcard');
     const lastCardIndex = cards.length - 1;
 
-    // Adjust total height calculation
-    const totalHeight = (cards.length - 1) * 40 + window.innerHeight * 0.6;
+    // Calculate total height for proper scrolling
+    const totalHeight = window.innerHeight * 1.5;
     if (spacerRef.current) {
       spacerRef.current.style.height = `${totalHeight}px`;
     }
@@ -185,45 +185,44 @@ const StackingCards = () => {
     // Clear existing ScrollTriggers
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
+    // Set initial scale for all cards
+    gsap.set(cards, {
+      scale: 0.8,
+      transformOrigin: 'center top'
+    });
+
     // Animate each card
-    const cardAnimations = cards.map((card, i) => {
-      const scaleAnim = gsap.to(card, {
-        scale: () => 0.8 + i * 0.035,
+    cards.forEach((card, i) => {
+      gsap.to(card, {
+        scale: 1 - (i * 0.05),
         ease: 'none',
         scrollTrigger: {
           trigger: card,
-          start: `top-=${40 * i} 40%`,
-          end: 'top 20%',
+          start: 'top center',
+          end: 'bottom center',
           scrub: true,
           onEnter: () => setFocusedProject(projects[i].projectName),
           onEnterBack: () => setFocusedProject(projects[i].projectName),
-        },
+        }
       });
 
-      const pinAnim = ScrollTrigger.create({
+      ScrollTrigger.create({
         trigger: card,
-        start: `top-=${40 * i} 40%`,
-        end: i === lastCardIndex ? `+=${window.innerHeight}` : 'top center',
-        endTrigger: i === lastCardIndex ? card : '.end-element',
+        start: 'top center',
+        endTrigger: '.end-element',
         pin: true,
         pinSpacing: false,
-        id: `card-${i}`,
       });
-
-      return [scaleAnim, pinAnim];
     });
 
     // Pin title
-    const titlePin = ScrollTrigger.create({
+    ScrollTrigger.create({
       trigger: titleRef.current,
       start: 'top 10%',
-      end: (self) => self.previous().end,
+      end: 'bottom center',
       pin: true,
       pinSpacing: false,
-      id: 'title',
     });
-
-    return [...cardAnimations.flat(), titlePin];
   };
 
   // Add this function to reorder projects based on selected project
@@ -346,11 +345,15 @@ const ProjectTitle = styled.h2`
 
 const Cards = styled.div`
   position: relative;
+  padding-top: 20vh;
+  margin-bottom: 50vh;
 `;
 
 const Card = styled.div`
+  position: relative;
+  width: 80%;
+  margin: 0 auto 2rem;
   border-radius: 15px;
-  margin-bottom: 2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transform-origin: center top;
   cursor: pointer;
