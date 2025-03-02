@@ -184,8 +184,13 @@ const StackingCards = () => {
     const cards = gsap.utils.toArray('.stackingcard');
     const lastCardIndex = cards.length - 1;
 
-    // Adjust total height calculation
-    const totalHeight = (cards.length - 1) * 40 + window.innerHeight * 0.6;
+    // Adjust these values to position cards higher
+    const cardSpacing = 40;
+    const startPosition = '20%';  // Changed from 40% to 30%
+    const endPosition = '10%';    // Changed from 20% to 10%
+
+    // Calculate total scroll height needed
+    const totalHeight = cardSpacing * lastCardIndex + window.innerHeight * 0.6;
     if (spacerRef.current) {
       spacerRef.current.style.height = `${totalHeight}px`;
     }
@@ -196,12 +201,12 @@ const StackingCards = () => {
     // Animate each card
     const cardAnimations = cards.map((card, i) => {
       const scaleAnim = gsap.to(card, {
-        scale: () => 0.8 + i * 0.035,
+        scale: () => 0.8 + (i * 0.035),
         ease: 'none',
         scrollTrigger: {
           trigger: card,
-          start: `top-=${40 * i} 40%`,
-          end: 'top 20%',
+          start: `top-=${cardSpacing * i} ${startPosition}`,
+          end: `top-=${cardSpacing * i} ${endPosition}`,
           scrub: true,
           onEnter: () => setFocusedProject(projects[i].projectName),
           onEnterBack: () => setFocusedProject(projects[i].projectName),
@@ -210,7 +215,7 @@ const StackingCards = () => {
 
       const pinAnim = ScrollTrigger.create({
         trigger: card,
-        start: `top-=${40 * i} 40%`,
+        start: `top-=${cardSpacing * i} ${startPosition}`,
         end: i === lastCardIndex ? `+=${window.innerHeight}` : 'top center',
         endTrigger: i === lastCardIndex ? card : '.end-element',
         pin: true,
@@ -300,29 +305,36 @@ const StackingCards = () => {
             {getOrderedProjects(selectedProject).map((project, index) => (
               <div key={project.id}>
                 <ProjectHero>
-                  <HeroImage src={project?.images[0]} alt={project.projectName} />
-                </ProjectHero>
+        {project.src ? (
+          <HeroImage 
+            src={project.src} 
+            alt={project.projectName} 
+          />
+        ) : (
+          <EmptyCard />
+        )}
+      </ProjectHero>
 
-                <ProjectSection>
-                  <HeroTitle>{project.title}</HeroTitle>
-                  <SectionTitle>BACKGROUND</SectionTitle>
-                  <SectionText>{project.background}</SectionText>
-                </ProjectSection>
+      <ProjectSection>
+        <HeroTitle>{project?.title || ''}</HeroTitle>
+        <SectionTitle>BACKGROUND</SectionTitle>
+        <SectionText>{project?.background || ''}</SectionText>
+      </ProjectSection>
 
-                <ProjectSection>
-                  <SectionTitle>SOLUTION</SectionTitle>
-                  <SectionText>{project.solution}</SectionText>
-                </ProjectSection>
+      <ProjectSection>
+        <SectionTitle>SOLUTION</SectionTitle>
+        <SectionText>{project?.solution || ''}</SectionText>
+      </ProjectSection>
 
-                <ProjectGallery>
-                  {project.images.slice(1).map((image, idx) => (
-                    <GalleryImage key={idx} src={image} alt={`Project detail ${idx + 1}`} />
-                  ))}
-                </ProjectGallery>
+      <ProjectGallery>
+        {project?.images?.slice(1)?.map((image, idx) => (
+          <GalleryImage key={idx} src={image} alt={`Project detail ${idx + 1}`} />
+        ))}
+      </ProjectGallery>
                 
                 {/* Add spacing between projects */}
                 {index < projects.length - 1 && <ProjectDivider />}
-              </div>
+                </div>
             ))}
           </OverlayContent>
         </ProjectOverlay>
