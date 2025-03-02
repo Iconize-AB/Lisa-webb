@@ -1,14 +1,14 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, RefObject } from 'react';
 import NeonButton from "../../components/NeonButton";
 import styles from './page.module.css';
 import Header from '../Header';
 import Footer from '../Footer';
 
 // Custom hook definition
-function useInView(options = {}) {
-  const ref = useRef(null);
+function useInView(options = {}): [RefObject<HTMLDivElement>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -48,8 +48,8 @@ export default function About() {
 
   const serviceContent = {
     'Branding': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
-    'Art Direction': "Different content for Art Directionkslksdkkddkdkkd",
-    'Animation': "Different content for Animation...",
+    'Art Direction': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
+    'Animation': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
     'Strategy': "Different content for Strategy...",
     'Design': "Different content for Design..."
   };
