@@ -50,8 +50,8 @@ export default function About() {
     'Branding': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
     'Art Direction': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
     'Animation': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
-    'Strategy': "Different content for Strategy...",
-    'Design': "Different content for Design..."
+    'Strategy': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
+    'Design': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress."
   };
 
   return (
@@ -79,8 +79,12 @@ export default function About() {
           </h2>
         </div>
         
-        {/* Grey Section */}
-        <div className="w-full h-[400px] bg-gray-300 mb-16 mt-16" />
+        {/* Hero Image Section */}
+        <img 
+          src="/berghs/banner.png"
+          alt="Lisa Studios Hero"
+          className="w-full h-[400px] object-cover mb-16 mt-16"
+        />
         
         {/* Services Section */}
         <div
@@ -166,10 +170,15 @@ export default function About() {
             clientsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <h3 className="text-xl mb-8">Our Bitches</h3>
-          <p className="text-2xl font-light">
-            Berghs SOC / Hyllie Bryggeri / Searchintent / Dubble Deli / Volanders
-          </p>
+          <div className="flex flex-col">
+            <div className="max-w-[600px] mb-8">
+              Founded as a &quot;Praktikbyrå&quot;. In today&apos;s fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.
+            </div>
+            <h3 className="text-xl mb-8">Our Bitches</h3>
+            <p className="text-2xl font-light">
+              Berghs SOC / Hyllie Bryggeri / Searchintent / Dubble Deli / Volanders
+            </p>
+          </div>
         </div>
 
         {/* Contact Information - Positioned Absolutely */}
