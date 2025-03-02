@@ -9,6 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   { 
+    id: 0, 
+    src: '',
+    projectName: '',
+    title: '',
+    background: '',
+    solution: '',
+  },
+  { 
     id: 1, 
     src: '/berghs.png',
     projectName: 'Berghs',
@@ -176,8 +184,8 @@ const StackingCards = () => {
     const cards = gsap.utils.toArray('.stackingcard');
     const lastCardIndex = cards.length - 1;
 
-    // Calculate total height for proper scrolling
-    const totalHeight = window.innerHeight * 1.5;
+    // Adjust total height calculation
+    const totalHeight = (cards.length - 1) * 40 + window.innerHeight * 0.6;
     if (spacerRef.current) {
       spacerRef.current.style.height = `${totalHeight}px`;
     }
@@ -185,44 +193,45 @@ const StackingCards = () => {
     // Clear existing ScrollTriggers
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
-    // Set initial scale for all cards
-    gsap.set(cards, {
-      scale: 0.8,
-      transformOrigin: 'center top'
-    });
-
     // Animate each card
-    cards.forEach((card, i) => {
-      gsap.to(card, {
-        scale: 1 - (i * 0.05),
+    const cardAnimations = cards.map((card, i) => {
+      const scaleAnim = gsap.to(card, {
+        scale: () => 0.8 + i * 0.035,
         ease: 'none',
         scrollTrigger: {
           trigger: card,
-          start: 'top center',
-          end: 'bottom center',
+          start: `top-=${40 * i} 40%`,
+          end: 'top 20%',
           scrub: true,
           onEnter: () => setFocusedProject(projects[i].projectName),
           onEnterBack: () => setFocusedProject(projects[i].projectName),
-        }
+        },
       });
 
-      ScrollTrigger.create({
+      const pinAnim = ScrollTrigger.create({
         trigger: card,
-        start: 'top center',
-        endTrigger: '.end-element',
+        start: `top-=${40 * i} 40%`,
+        end: i === lastCardIndex ? `+=${window.innerHeight}` : 'top center',
+        endTrigger: i === lastCardIndex ? card : '.end-element',
         pin: true,
         pinSpacing: false,
+        id: `card-${i}`,
       });
+
+      return [scaleAnim, pinAnim];
     });
 
     // Pin title
-    ScrollTrigger.create({
+    const titlePin = ScrollTrigger.create({
       trigger: titleRef.current,
       start: 'top 10%',
-      end: 'bottom center',
+      end: (self) => self.previous().end,
       pin: true,
       pinSpacing: false,
+      id: 'title',
     });
+
+    return [...cardAnimations.flat(), titlePin];
   };
 
   // Add this function to reorder projects based on selected project
@@ -271,7 +280,11 @@ const StackingCards = () => {
               className="stackingcard"
               onClick={() => handleProjectClick(project)}
             >
-              <CardImage src={project.src} alt={project.projectName} />
+              {project.src ? (
+                <CardImage src={project.src} alt={project.projectName} />
+              ) : (
+                <EmptyCard />
+              )}
             </Card>
           ))}
         </Cards>
@@ -287,7 +300,7 @@ const StackingCards = () => {
             {getOrderedProjects(selectedProject).map((project, index) => (
               <div key={project.id}>
                 <ProjectHero>
-                  <HeroImage src={project.images[0]} alt={project.projectName} />
+                  <HeroImage src={project?.images[0]} alt={project.projectName} />
                 </ProjectHero>
 
                 <ProjectSection>
@@ -345,20 +358,17 @@ const ProjectTitle = styled.h2`
 
 const Cards = styled.div`
   position: relative;
-  padding-top: 20vh;
-  margin-bottom: 50vh;
 `;
 
 const Card = styled.div`
-  position: relative;
-  width: 80%;
-  margin: 0 auto 2rem;
   border-radius: 15px;
+  margin-bottom: 2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transform-origin: center top;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   overflow: hidden;
+  aspect-ratio: 16/9;
 
   &:hover {
     transform: scale(1.02);
@@ -370,6 +380,12 @@ const CardImage = styled.img`
   height: 100%;
   object-fit: cover;
   display: block;
+`;
+
+const EmptyCard = styled.div`
+  width: 100%;
+  height: 0%;
+  background-color: black;
 `;
 
 const EndElement = styled.div`
