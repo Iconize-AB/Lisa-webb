@@ -226,6 +226,17 @@ const StackingCards = () => {
     return [...cardAnimations.flat(), titlePin];
   };
 
+  // Add this function to reorder projects based on selected project
+  const getOrderedProjects = (selectedProject) => {
+    if (!selectedProject) return projects;
+    
+    const selectedIndex = projects.findIndex(p => p.id === selectedProject.id);
+    return [
+      ...projects.slice(selectedIndex),
+      ...projects.slice(0, selectedIndex)
+    ];
+  };
+
   useEffect(() => {
     // Scroll to top when component mounts or updates
     window.scrollTo(0, 0);
@@ -274,41 +285,33 @@ const StackingCards = () => {
         <ProjectOverlay className="project-overlay" isVisible={!!selectedProject}>
           <CloseButton onClick={handleCloseProject}>×</CloseButton>
           <OverlayContent className="overlay-content">
-            <ProjectHero>
-              <HeroImage src={selectedProject.images[0]} alt={selectedProject.projectName} />
-            </ProjectHero>
+            {getOrderedProjects(selectedProject).map((project, index) => (
+              <div key={project.id}>
+                <ProjectHero>
+                  <HeroImage src={project.images[0]} alt={project.projectName} />
+                </ProjectHero>
 
-            <ProjectSection>
-              <HeroTitle>{selectedProject.title}</HeroTitle>
-              <SectionTitle>BACKGROUND</SectionTitle>
-              <SectionText>{selectedProject.background}</SectionText>
-            </ProjectSection>
+                <ProjectSection>
+                  <HeroTitle>{project.title}</HeroTitle>
+                  <SectionTitle>BACKGROUND</SectionTitle>
+                  <SectionText>{project.background}</SectionText>
+                </ProjectSection>
 
-            <ProjectSection>
-              <SectionTitle>SOLUTION</SectionTitle>
-              <SectionText>{selectedProject.solution}</SectionText>
-            </ProjectSection>
+                <ProjectSection>
+                  <SectionTitle>SOLUTION</SectionTitle>
+                  <SectionText>{project.solution}</SectionText>
+                </ProjectSection>
 
-
-            <ProjectGallery>
-              {selectedProject.images.slice(1).map((image, index) => (
-                <GalleryImage key={index} src={image} alt={`Project detail ${index + 1}`} />
-              ))}
-            </ProjectGallery>
-            <ProjectDetails>
-              <DetailItem>
-                <DetailLabel>Role</DetailLabel>
-                <DetailText>{selectedProject.details.role}</DetailText>
-              </DetailItem>
-              <DetailItem>
-                <DetailLabel>Timeline</DetailLabel>
-                <DetailText>{selectedProject.details.timeline}</DetailText>
-              </DetailItem>
-              <DetailItem>
-                <DetailLabel>Technologies</DetailLabel>
-                <DetailText>{selectedProject.details.technologies.join(', ')}</DetailText>
-              </DetailItem>
-            </ProjectDetails>
+                <ProjectGallery>
+                  {project.images.slice(1).map((image, idx) => (
+                    <GalleryImage key={idx} src={image} alt={`Project detail ${idx + 1}`} />
+                  ))}
+                </ProjectGallery>
+                
+                {/* Add spacing between projects */}
+                {index < projects.length - 1 && <ProjectDivider />}
+              </div>
+            ))}
           </OverlayContent>
         </ProjectOverlay>
       )}
@@ -509,6 +512,11 @@ const GalleryImage = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 0;
+`;
+
+// Add new styled component for project divider
+const ProjectDivider = styled.div`
+  height: 100px;
 `;
 
 export default StackingCards;
