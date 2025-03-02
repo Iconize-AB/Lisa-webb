@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const StackingCards2 = () => {
   useEffect(() => {
-    const cards = gsap.utils.toArray(`.${styles.card}`);
+    const cards = gsap.utils.toArray('.stackingcard').filter((card): card is HTMLElement => card instanceof HTMLElement);
 
     cards.forEach((card, index) => {
       gsap.set(card, {
