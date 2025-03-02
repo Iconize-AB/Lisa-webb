@@ -181,7 +181,7 @@ const StackingCards = () => {
 
   // Add this function to handle the animation setup
   const setupAnimations = () => {
-    const cards = gsap.utils.toArray('.stackingcard');
+    const cards = gsap.utils.toArray('.stackingcard').filter(card => card instanceof Element);
     const lastCardIndex = cards.length - 1;
 
     // Adjust these values to position cards higher
