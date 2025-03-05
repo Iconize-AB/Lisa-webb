@@ -89,19 +89,19 @@ export default function About() {
         {/* Services Section */}
         <div
           ref={servicesRef}
-          className={`max-w-[1400px] mx-auto flex gap-16 transition-all duration-1000 ease-out transform ${
+          className={`max-w-[1400px] mx-auto flex flex-col md:flex-row gap-8 md:gap-16 transition-all duration-1000 ease-out transform ${
             servicesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
           {/* Services Menu */}
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             <h3 className="text-xl mb-8">SERVICES</h3>
             <div className="space-y-4">
               {Object.entries(services).map(([service, { color }]) => (
                 <button
                   key={service}
                   onClick={() => setSelectedService(service)}
-                  className={`text-6xl font-light block hover:text-white transition-colors whitespace-nowrap leading-none ${
+                  className={`text-4xl md:text-6xl font-light block hover:text-white transition-colors leading-none ${
                     selectedService === service ? 'text-white' : 'text-gray-500'
                   }`}
                 >
@@ -112,7 +112,7 @@ export default function About() {
           </div>
 
           {/* Service Content */}
-          <div className="w-1/2 pt-20">
+          <div className="w-full md:w-1/2 pt-8 md:pt-20">
             <p className="text-lg font-light">
               {serviceContent[selectedService]}
             </p>
@@ -122,12 +122,12 @@ export default function About() {
         {/* Team Members Section */}
         <div
           ref={teamRef}
-          className={`mt-32 transition-all duration-1000 ease-out transform ${
+          className={`mt-16 md:mt-32 transition-all duration-1000 ease-out transform ${
             teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
           <h3 className="text-xl mb-8">ABOUT US</h3>
-          <div className="grid grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             <div>
               <img 
                 src="/Ivar.jpeg" 
@@ -182,7 +182,7 @@ export default function About() {
         </div>
 
         {/* Contact Information - Positioned Absolutely */}
-        <div className="absolute top-0 right-0 text-right">
+        <div className="relative md:absolute md:top-0 md:right-0 text-left md:text-right mt-16 md:mt-0">
           <div className="mb-8">
             <h4 className="mb-2">CONTACT US</h4>
             <div className="mb-4">
