@@ -186,8 +186,8 @@ const StackingCards = () => {
 
     // Adjust these values to position cards higher
     const cardSpacing = 40;
-    const startPosition = '20%';  // Changed from 40% to 30%
-    const endPosition = '10%';    // Changed from 20% to 10%
+    const startPosition = window.innerWidth < 768 ? '35%' : '20%';  // Changed from 40% to 30%
+    const endPosition = window.innerWidth < 768 ? '15%' : '10%';    // Changed from 20% to 10%
 
     // Calculate total scroll height needed
     const totalHeight = cardSpacing * lastCardIndex + window.innerHeight * 0.6;
@@ -366,6 +366,9 @@ const ProjectTitle = styled.h2`
   min-height: 2.5rem;
   color: white;
   font-family: 'Neue Haas Display Black';
+  @media (max-width: 768px) {
+    top: 120px !important; // Override any inline styles
+  }
 `;
 
 const Cards = styled.div`
