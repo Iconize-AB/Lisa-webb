@@ -21,14 +21,17 @@ const projects = [
     src: '/berghs.png',
     projectName: 'Berghs',
     title: 'ENTER BERGHS',
-    background: 'In todays fast-paced and forward-moving world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with anxiety and stress, yet traditional meditation practices can feel inaccessible or intimidating.',
+    background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',
     solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
     images: [
-      '/berghs.png',
-      '/berghs.png',
-      '/berghs.png',
-      '/berghs.png',
-      '/berghs.png'
+      '/Här ska videon vara',
+      '/Enter_berghs_staket.png',
+      '/Programikoner.mp4',
+      '/skylt_berghs.png', '/Monter.png'
+      '/från_till.jpg',
+      '/Berghs_logos.png',
+      '/Header_video_kringelikrok_16_9 copy.mp4',
+      '/Berghs_popup_16_9 copy.png'
     ],
     details: {
       role: 'Lead Designer',
