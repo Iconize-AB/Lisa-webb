@@ -19,7 +19,7 @@ const projects = [
   { 
     id: 1, 
     src: '/berghs.png',
-    projectName: 'Berghs',
+    projectName: 'ENTER BERGHS',
     title: 'ENTER BERGHS',
     background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',
     solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
@@ -42,10 +42,10 @@ const projects = [
   { 
     id: 2, 
     src: '/berghs.png',
-    projectName: 'Project Two',
-    title: 'ENTER BERGHS',
-    background: 'In todays fast-paced and forward-moving world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with anxiety and stress, yet traditional meditation practices can feel inaccessible or intimidating.',
-    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
+    projectName: 'SKÅNSK LAGER',
+    title: 'SKÅNSK LAGER',
+    background: 'Hyllie Brewery is one of the largest beer producers within the region of Skåne.',
+    solution: 'Drawing inspiration from this vast and beautiful area, we created a rebranding of their bestseller: Hyllie Brewery is one of the largest beer producers within the region of Skåne.',
     images: [
       '/berghs/Berghs_popup_16_9 copy.png',
       '/berghs/flagga_berghs.png',
@@ -55,17 +55,17 @@ const projects = [
     ],
     details: {
       role: 'Lead Designer',
-      timeline: '2023-2024',
-      technologies: ['React', 'GSAP', 'Figma']
+      timeline: '2024-2025',
+      technologies: ['Rebranding', 'Strategy', 'Graphic Design']
     }
   },
   { 
     id: 3, 
     src: '/project2.png',
-    projectName: 'Project Three',
-    title: 'ENTER BERGHS',
-    background: 'In todays fast-paced and forward-moving world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with anxiety and stress, yet traditional meditation practices can feel inaccessible or intimidating.',
-    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
+    projectName: 'VOLANDERS',
+    title: 'VOLANDERS',
+    background: 'Volanders is a newly opened eventspace in the old slaughterhouse quarter of Stockholm, how can we infuse the history of the industrial building into the new identity?',
+    solution: 'Historical Parties. Mixing the old with the new!',
     images: [
       '/project2.png',
       '/project2.png',
@@ -75,17 +75,17 @@ const projects = [
     ],
     details: {
       role: 'Lead Designer',
-      timeline: '2023-2024',
-      technologies: ['React', 'GSAP', 'Figma']
+      timeline: '2024-2025',
+      technologies: ['Art Direction', 'Graphic Design', 'Strategy']
     }
   },
   { 
     id: 4, 
     src: '/project3.png',
-    projectName: 'Project Four',
-    title: 'ENTER BERGHS',
-    background: 'In todays fast-paced and forward-moving world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with anxiety and stress, yet traditional meditation practices can feel inaccessible or intimidating.',
-    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
+    projectName: 'DUBBLA DELI',
+    title: 'DUBBLA DELI',
+    background: 'Dubbla, Stockholms latest & greatest sandwich restaurant, needed to get the word out about their new spot in Hötorgshallen.',
+    solution: 'With a smaller budget, we created low-cost communication, using take-away bags, loyalty cards & t-shirts as brand megaphones, in true deli fashion. We then partnered with Sweden's other favorite Dubbla: Doubble, to offer double dates a special sandwich deal',
     images: [
       '/project3.png',
       '/project3.png',
@@ -95,8 +95,8 @@ const projects = [
     ],
     details: {
       role: 'Lead Designer',
-      timeline: '2023-2024',
-      technologies: ['React', 'GSAP', 'Figma']
+      timeline: '2024-2025',
+      technologies: ['Strategy', 'Concept', 'Graphic Design']
     }
   },
   { 
