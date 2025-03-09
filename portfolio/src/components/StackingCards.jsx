@@ -24,14 +24,13 @@ const projects = [
     background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',
     solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
     images: [
-      '/Här ska videon vara',
-      '/Enter_berghs_staket.png',
-      '/Programikoner.mp4',
-      '/skylt_berghs.png', '/Monter.png'
-      '/från_till.jpg',
-      '/Berghs_logos.png',
-      '/Header_video_kringelikrok_16_9 copy.mp4',
-      '/Berghs_popup_16_9 copy.png'
+      'berghs/Enter_berghs_staket.png',
+      'berghs//Monter.png',
+      'berghs/skylt_berghs.png',
+      'berghs/från_till.jpg',
+      'berghs/Berghs_logos.png',
+      'berghs/flagga_berghs.png',
+      'berghs/Berghs_popup_16_9 copy.png'
     ],
     details: {
       role: 'Lead Designer',
@@ -41,17 +40,17 @@ const projects = [
   },
   { 
     id: 2, 
-    src: '/berghs.png',
+    src: '/hyllie/Förstabild.png',
     projectName: 'SKÅNSK LAGER',
     title: 'SKÅNSK LAGER',
     background: 'Hyllie Brewery is one of the largest beer producers within the region of Skåne.',
     solution: 'Drawing inspiration from this vast and beautiful area, we created a rebranding of their bestseller: Hyllie Brewery is one of the largest beer producers within the region of Skåne.',
     images: [
-      '/berghs/Berghs_popup_16_9 copy.png',
-      '/berghs/flagga_berghs.png',
-      '/berghs/Monter.png',
-      '/berghs/skylt_berghs.png',
-      '/berghs/VATTENFLASKA_BERGHS copy.png'
+      'hyllie/Förstabild.png',
+      'hyllie/Flak.png',
+      'hyllie/Fält.png',
+      'hyllie/ölglas_färgpalett.png',
+      'hyllie/burk_vetestrå.png'
     ],
     details: {
       role: 'Lead Designer',
@@ -61,17 +60,17 @@ const projects = [
   },
   { 
     id: 3, 
-    src: '/project2.png',
+    src: '/volanders/Förstabilden.png',
     projectName: 'VOLANDERS',
     title: 'VOLANDERS',
     background: 'Volanders is a newly opened eventspace in the old slaughterhouse quarter of Stockholm, how can we infuse the history of the industrial building into the new identity?',
     solution: 'Historical Parties. Mixing the old with the new!',
     images: [
-      '/project2.png',
-      '/project2.png',
-      '/project2.png',
-      '/project2.png',
-      '/project2.png'
+      'volanders/Förstabilden.png',
+      'volanders/DÅ_NU.png',
+      'volanders/färgpalett.png',
+      'volanders/Bildspel_Logotyp.gif',
+      'volanders/överblick.png'
     ],
     details: {
       role: 'Lead Designer',
@@ -81,17 +80,17 @@ const projects = [
   },
   { 
     id: 4, 
-    src: '/project3.png',
+    src: 'dubbla_deli/Förstabild.png',
     projectName: 'DUBBLA DELI',
     title: 'DUBBLA DELI',
     background: 'Dubbla, Stockholms latest & greatest sandwich restaurant, needed to get the word out about their new spot in Hötorgshallen.',
-    solution: 'With a smaller budget, we created low-cost communication, using take-away bags, loyalty cards & t-shirts as brand megaphones, in true deli fashion. We then partnered with Sweden's other favorite Dubbla: Doubble, to offer double dates a special sandwich deal',
+    solution: "With a smaller budget, we created low-cost communication, using take-away bags, loyalty cards & t-shirts as brand megaphones, in true deli fashion. We then partnered with Sweden's other favorite Dubbla: Doubble, to offer double dates a special sandwich deal",
     images: [
-      '/project3.png',
-      '/project3.png',
-      '/project3.png',
-      '/project3.png',
-      '/project3.png'
+      'dubbla_deli/dubbla_staket.png',
+      'dubbla_deli/Krökarkortet.png',
+      'dubbla_deli/Påse.png',
+      'dubbla_deli/Översikt.png',
+      'dubbla_deli/Klippkort.png'
     ],
     details: {
       role: 'Lead Designer',
@@ -100,25 +99,13 @@ const projects = [
     }
   },
   { 
-    id: 5, 
-    src: '/berghs.png',
-    projectName: 'Project Five',
-    title: 'ENTER BERGHS',
-    background: 'In todays fast-paced and forward-moving world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with anxiety and stress, yet traditional meditation practices can feel inaccessible or intimidating.',
-    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
-    images: [
-      '/berghs.png',
-      '/berghs.png',
-      '/berghs.png',
-      '/berghs.png',
-      '/berghs.png'
-    ],
-    details: {
-      role: 'Lead Designer',
-      timeline: '2023-2024',
-      technologies: ['React', 'GSAP', 'Figma']
-    }
-  }
+    id: 5,
+    src: '',
+    projectName: '',
+    title: '',
+    background: '',
+    solution: '',
+  },
 ];
 
 const StackingCards = () => {
