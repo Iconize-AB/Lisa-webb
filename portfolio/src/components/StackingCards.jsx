@@ -21,16 +21,17 @@ const projects = [
     src: '/berghs.png',
     projectName: 'ENTER BERGHS',
     title: 'ENTER BERGHS',
-    background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',
     solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
-    images: [
-      'berghs/Enter_berghs_staket.png',
-      'berghs//Monter.png',
-      'berghs/skylt_berghs.png',
-      'berghs/från_till.jpg',
-      'berghs/Berghs_logos.png',
+    background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',        images: [      
+      'berghs/Enter_berghs_staket.png',      
+      'berghs//Monter.png',      
+      'berghs/skylt_berghs.png',      
+      'berghs/från_till.jpg',      
+      'berghs/Berghs_logos.png',      
       'berghs/flagga_berghs.png',
-      'berghs/Berghs_popup_16_9 copy.png'
+      'berghs/Berghs_popup_16_9 copy.png',
+      'berghs/Programikoner.gif',
+      'berghs/Berghs.gif',
     ],
     details: {
       role: 'Lead Designer',
@@ -70,7 +71,7 @@ const projects = [
       'volanders/DÅ_NU.png',
       'volanders/färgpalett.png',
       'volanders/Bildspel_Logotyp.gif',
-      'volanders/överblick.png'
+      'volanders/OOH.png'
     ],
     details: {
       role: 'Lead Designer',
@@ -90,7 +91,7 @@ const projects = [
       'dubbla_deli/Krökarkortet.png',
       'dubbla_deli/Påse.png',
       'dubbla_deli/Översikt.png',
-      'dubbla_deli/Klippkort.png'
+      'dubbla_deli/mobil.png'
     ],
     details: {
       role: 'Lead Designer',
@@ -114,6 +115,8 @@ const StackingCards = () => {
   const spacerRef = useRef(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [focusedProject, setFocusedProject] = useState(projects[0].projectName);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   console.log("selectedProject", selectedProject);
 
@@ -176,8 +179,8 @@ const StackingCards = () => {
 
     // Adjust these values to position cards higher
     const cardSpacing = 40;
-    const startPosition = window.innerWidth < 768 ? '35%' : '20%';  // Changed from 40% to 30%
-    const endPosition = window.innerWidth < 768 ? '15%' : '10%';    // Changed from 20% to 10%
+    const startPosition = window.innerWidth < 768 ? '35%' : '25%';  // Changed from 40% to 30%
+    const endPosition = window.innerWidth < 768 ? '15%' : '20%';    // Changed from 20% to 10%
 
     // Calculate total scroll height needed
     const totalHeight = cardSpacing * lastCardIndex + window.innerHeight * 0.6;
@@ -229,15 +232,43 @@ const StackingCards = () => {
     return [...cardAnimations.flat(), titlePin];
   };
 
-  // Add this function to reorder projects based on selected project
+  // Modify getOrderedProjects to only return current project
   const getOrderedProjects = (selectedProject) => {
-    if (!selectedProject) return projects;
-    
+    if (!selectedProject) return [];
     const selectedIndex = projects.findIndex(p => p.id === selectedProject.id);
-    return [
-      ...projects.slice(selectedIndex),
-      ...projects.slice(0, selectedIndex)
-    ];
+    setCurrentProjectIndex(selectedIndex);
+    return [projects[selectedIndex]];
+  };
+
+  // Update handleNextProject to include loading state
+  const handleNextProject = () => {
+    const nextIndex = (currentProjectIndex + 1) % projects.length;
+    const overlayContent = document.querySelector('.overlay-content');
+    
+    setIsLoading(true); // Start loading
+
+    // Fade out current content
+    gsap.to(overlayContent, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        if (overlayContent) {
+          overlayContent.scrollTop = 0;
+        }
+        setSelectedProject(projects[nextIndex]);
+        setCurrentProjectIndex(nextIndex);
+        
+        // Simulate loading time
+        setTimeout(() => {
+          setIsLoading(false); // End loading
+          // Fade in new content
+          gsap.to(overlayContent, {
+            opacity: 1,
+            duration: 0.5
+          });
+        }, 800); // Adjust timing as needed
+      }
+    });
   };
 
   useEffect(() => {
@@ -267,7 +298,7 @@ const StackingCards = () => {
   return (
     <Wrapper ref={wrapperRef}>
       <Container>
-        <ProjectTitle ref={titleRef}>{focusedProject}</ProjectTitle>
+        <ProjectTitle className="project-title" ref={titleRef}>{focusedProject}</ProjectTitle>
         <Cards>
           {projects.map((project) => (
             <Card 
@@ -291,41 +322,52 @@ const StackingCards = () => {
       {selectedProject && (
         <ProjectOverlay className="project-overlay" isVisible={!!selectedProject}>
           <CloseButton onClick={handleCloseProject}>×</CloseButton>
+          
+          {/* Add loading overlay */}
+          {isLoading && (
+            <LoadingOverlay>
+              <LoadingSpinner />
+            </LoadingOverlay>
+          )}
+          
           <OverlayContent className="overlay-content">
-            {getOrderedProjects(selectedProject).map((project, index) => (
-              <div key={project.id}>
-                <ProjectHero>
-        {project.src ? (
-          <HeroImage 
-            src={project.src} 
-            alt={project.projectName} 
-          />
-        ) : (
-          <EmptyCard />
-        )}
-      </ProjectHero>
+            {/* Show only current project */}
+            <div>
+              <ProjectHero>
+                {selectedProject.src ? (
+                  <HeroImage 
+                    src={selectedProject.src} 
+                    alt={selectedProject.projectName} 
+                  />
+                ) : (
+                  <EmptyCard />
+                )}
+              </ProjectHero>
 
-      <ProjectSection>
-        <HeroTitle>{project?.title || ''}</HeroTitle>
-        <SectionTitle>BACKGROUND</SectionTitle>
-        <SectionText>{project?.background || ''}</SectionText>
-      </ProjectSection>
+              <ProjectSection>
+                {/* <HeroTitle>{selectedProject?.title || ''}</HeroTitle> */}
+                <SectionTitle>BACKGROUND</SectionTitle>
+                <SectionText>{selectedProject?.background || ''}</SectionText>
+              </ProjectSection>
 
-      <ProjectSection>
-        <SectionTitle>SOLUTION</SectionTitle>
-        <SectionText>{project?.solution || ''}</SectionText>
-      </ProjectSection>
+              <ProjectSection>
+                <SectionTitle>SOLUTION</SectionTitle>
+                <SectionText>{selectedProject?.solution || ''}</SectionText>
+              </ProjectSection>
 
-      <ProjectGallery>
-        {project?.images?.slice(1)?.map((image, idx) => (
-          <GalleryImage key={idx} src={image} alt={`Project detail ${idx + 1}`} />
-        ))}
-      </ProjectGallery>
-                
-                {/* Add spacing between projects */}
-                {index < projects.length - 1 && <ProjectDivider />}
-                </div>
-            ))}
+              <ProjectGallery>
+                {selectedProject?.images?.map((image, idx) => (
+                  <GalleryImage key={idx} src={image} alt={`Project detail ${idx + 1}`} />
+                ))}
+              </ProjectGallery>
+
+              {/* Add Next Project button */}
+              <NextProjectContainer>
+                <NextProjectButton onClick={handleNextProject}>
+                  Next Project →
+                </NextProjectButton>
+              </NextProjectContainer>
+            </div>
           </OverlayContent>
         </ProjectOverlay>
       )}
@@ -347,7 +389,7 @@ const Container = styled.div`
 const Title = styled.h1`
   text-align: center;
   font-size: 3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 `;
 
 const ProjectTitle = styled.h2`
@@ -355,6 +397,7 @@ const ProjectTitle = styled.h2`
   font-size: 2rem;
   min-height: 2.5rem;
   color: white;
+  top: 80px;
   font-family: 'Neue Haas Display Black';
   @media (max-width: 768px) {
     top: 120px !important; // Override any inline styles
@@ -434,6 +477,7 @@ const OverlayContent = styled.div`
   opacity: 0;
   visibility: hidden;
   transform: translateY(100px) scale(0.95);
+  position: relative;
 `;
 
 const ProjectHero = styled.div`
@@ -461,28 +505,34 @@ const HeroTitle = styled.h1`
 `;
 
 const ProjectSection = styled.div`
-  padding: 5rem;
+  padding: 4rem 5rem;
   margin: 0 auto;
+  max-width: 1200px;
+  
+  @media (max-width: 768px) {
+    padding: 2rem 2rem;
+  }
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
-  margin-bottom: 2rem;
   font-family: 'Neue Haas Display Black', sans-serif;
+  color: #666;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
 `;
 
 const SectionText = styled.p`
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #333;
-`;
-
-const ProjectDetails = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  padding: 5rem;
+  font-size: 1.8rem;
+  line-height: 1.4;
+  color: #000;
+  font-family: 'Neue Haas Display', sans-serif;
+  max-width: 800px;
+  
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+  }
 `;
 
 const DetailItem = styled.div`
@@ -515,11 +565,8 @@ const ProjectGallery = styled.div`
 
   img:not(:first-child) {
     width: 100%;
-    aspect-ratio: 1/1;
-  }
-
-  img:last-child {
-    grid-column: 1 / -1;
+    height: 100%;
+    object-fit: cover;
   }
 
   @media (min-width: 768px) {
@@ -528,6 +575,11 @@ const ProjectGallery = styled.div`
     img:first-child {
       grid-column: 1 / -1;
     }
+    
+    // Remove this rule that was causing the last odd image to span full width
+    /* img:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    } */
   }
 `;
 
@@ -541,6 +593,58 @@ const GalleryImage = styled.img`
 // Add new styled component for project divider
 const ProjectDivider = styled.div`
   height: 100px;
+`;
+
+// Add styled component for the next project button
+const NextProjectContainer = styled.div`
+  padding: 4rem 5rem;
+  text-align: right;
+  width: 100%;
+`;
+
+const NextProjectButton = styled.button`
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Neue Haas Display', sans-serif;
+
+  &:hover {
+    transform: translateX(5px);
+    background-color: #333;
+  }
+`;
+
+// Add new styled components
+const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1002;
+`;
+
+const LoadingSpinner = styled.div`
+  width: 50px;
+  height: 50px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid black;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 `;
 
 export default StackingCards;
