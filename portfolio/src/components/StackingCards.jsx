@@ -22,8 +22,7 @@ const projects = [
     projectName: 'ENTER BERGHS',
     title: 'ENTER BERGHS',
     solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
-    background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',        images: [      
-      'berghs/Enter_berghs_staket.png',      
+    background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',        images: [            'berghs/Enter_berghs_staket.png',      
       'berghs//Monter.png',      
       'berghs/skylt_berghs.png',      
       'berghs/från_till.jpg',      
@@ -117,6 +116,7 @@ const StackingCards = () => {
   const [focusedProject, setFocusedProject] = useState(projects[0].projectName);
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   console.log("selectedProject", selectedProject);
 
@@ -295,8 +295,17 @@ const StackingCards = () => {
     };
   }, []); // Empty dependency array to run only on mount
 
+  useEffect(() => {
+    // Initial delay before showing content
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <Wrapper ref={wrapperRef}>
+    <Wrapper ref={wrapperRef} $isVisible={isVisible}>
       <Container>
         <ProjectTitle className="project-title" ref={titleRef}>{focusedProject}</ProjectTitle>
         <Cards>
@@ -378,6 +387,8 @@ const StackingCards = () => {
 // Styled Components
 const Wrapper = styled.div`
   overflow: hidden;
+  opacity: ${props => props.$isVisible ? 1 : 0};
+  transition: opacity 1s ease-in-out;
 `;
 
 const Container = styled.div`
