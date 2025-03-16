@@ -257,27 +257,33 @@ const StackingCards = () => {
 
   // Update handleNextProject to include loading state
   const handleNextProject = () => {
-    const validProjects = projects.filter((p) => p.src); // Filter out empty projects
+    const validProjects = projects.filter((p) => p.src);
     const currentValidIndex = validProjects.findIndex(
       (p) => p.id === selectedProject.id
     );
     const nextIndex = (currentValidIndex + 1) % validProjects.length;
     const nextProject = validProjects[nextIndex];
-
+  
     const overlayContent = document.querySelector(".overlay-content");
-
+    const projectOverlay = document.querySelector(".project-overlay");
+  
     setIsLoading(true);
-
+  
+    // First scroll the overlay to top
+    if (projectOverlay) {
+      projectOverlay.scrollTo({
+        top: 0,
+        behavior: 'instant'
+      });
+    }
+  
     gsap.to(overlayContent, {
       opacity: 0,
       duration: 0.5,
       onComplete: () => {
-        if (overlayContent) {
-          overlayContent.scrollTop = 0;
-        }
         setSelectedProject(nextProject);
         setCurrentProjectIndex(nextProject.id);
-
+  
         setTimeout(() => {
           setIsLoading(false);
           gsap.to(overlayContent, {
