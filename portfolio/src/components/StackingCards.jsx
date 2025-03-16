@@ -22,8 +22,7 @@ const projects = [
     projectName: 'ENTER BERGHS',
     title: 'ENTER BERGHS',
     solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
-    background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',        images: [            'berghs/Enter_berghs_staket.png',            'berghs//Monter.png',      
-      'berghs/skylt_berghs.png',      
+    background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',        images: [            'berghs/Enter_berghs_staket.png',            'berghs//Monter.png',            'berghs/skylt_berghs.png',      
       'berghs/från_till.jpg',      
       'berghs/Berghs_logos.png',      
       'berghs/flagga_berghs.png',
@@ -329,7 +328,7 @@ const StackingCards = () => {
       
       {/* Project Overlay */}
       {selectedProject && (
-        <ProjectOverlay className="project-overlay" isVisible={!!selectedProject}>
+        <ProjectOverlay className="project-overlay" $isVisible={!!selectedProject}>
           <CloseButton onClick={handleCloseProject}>×</CloseButton>
           
           {/* Add loading overlay */}
@@ -467,7 +466,7 @@ const ProjectOverlay = styled.div`
   overflow-y: auto;
   opacity: 0;
   visibility: hidden;
-  display: ${props => props.isVisible ? 'block' : 'none'};
+  display: ${({ $isVisible }) => $isVisible ? 'block' : 'none'};
 `;
 
 const CloseButton = styled.button`
