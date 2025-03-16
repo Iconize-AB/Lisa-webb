@@ -11,7 +11,7 @@ export default function Home() {
     // Add a delay before showing the cards
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 200); // Adjust this delay as needed (1000ms = 1 second)
+    }, 100); // Adjust this delay as needed (100ms = 100 milliseconds)
 
     return () => clearTimeout(timer);
   }, []);

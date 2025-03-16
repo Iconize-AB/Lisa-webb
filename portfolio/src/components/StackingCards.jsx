@@ -404,7 +404,7 @@ const Title = styled.h1`
 
 const ProjectTitle = styled.h2`
   text-align: center;
-  font-size: 2rem;
+  font-size: 3.5rem;
   min-height: 2.5rem;
   color: white;
   top: 80px;

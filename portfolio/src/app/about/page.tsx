@@ -55,7 +55,7 @@ export default function About() {
   };
 
   return (
-    <>
+    <div className="bg-black">
     <Header />
     <main className="min-h-screen bg-black text-white p-8 pt-24">
       {/* Navigation Button Section */}
@@ -70,7 +70,7 @@ export default function About() {
           ref={headerRef}
           className={`transition-all duration-1000 ease-out transform ${
             headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          } md:w-3/4`}
         >
           <h1 className="text-2xl mb-4">LISA STUDIOS</h1>
           <h2 className="text-[80px] leading-tight font-normal mb-16">
@@ -79,11 +79,40 @@ export default function About() {
           </h2>
         </div>
         
+        {/* Contact Information - Moved up in the DOM */}
+        <div className="relative md:absolute md:top-0 md:right-0 text-left md:text-right mt-16 md:mt-0 md:w-1/4">
+          <div className="mb-8">
+            <h4 className="mb-2">CONTACT US</h4>
+            <div className="mb-4">
+              <p className="mb-1">EMAIL:</p>
+              <a href="mailto:hey@lisastudios.se" className="hover:underline">
+                hey@lisastudios.se
+              </a>
+            </div>
+            <div className="mb-4">
+              <p className="mb-1">PHONE:</p>
+              <a href="tel:+4686586864" className="hover:underline">
+                +4686586864
+              </a>
+            </div>
+          </div>
+          
+          <div className="mb-8">
+            <p className="mb-1">OFFICE</p>
+            <p>NORR MÄLARSTRAND 12</p>
+          </div>
+          
+          <div>
+            <p className="mb-1">SOCIAL</p>
+            <a href="#" className="hover:underline">Lisastudios</a>
+          </div>
+        </div>
+        
         {/* Hero Image Section */}
         <img 
           src="/berghs/banner.png"
           alt="Lisa Studios Hero"
-          className="w-full h-[400px] object-cover mb-16 mt-16"
+          className="w-full h-[400px] object-cover mb-16 mt-32"
         />
         
         {/* Services Section */}
@@ -180,38 +209,9 @@ export default function About() {
             </p>
           </div>
         </div>
-
-        {/* Contact Information - Positioned Absolutely */}
-        <div className="relative md:absolute md:top-0 md:right-0 text-left md:text-right mt-16 md:mt-0">
-          <div className="mb-8">
-            <h4 className="mb-2">CONTACT US</h4>
-            <div className="mb-4">
-              <p className="mb-1">EMAIL:</p>
-              <a href="mailto:hey@lisastudios.se" className="hover:underline">
-                hey@lisastudios.se
-              </a>
-            </div>
-            <div className="mb-4">
-              <p className="mb-1">PHONE:</p>
-              <a href="tel:+4686586864" className="hover:underline">
-                +4686586864
-              </a>
-            </div>
-          </div>
-          
-          <div className="mb-8">
-            <p className="mb-1">OFFICE</p>
-            <p>NORR MÄLARSTRAND 12</p>
-          </div>
-          
-          <div>
-            <p className="mb-1">SOCIAL</p>
-            <a href="#" className="hover:underline">Lisastudios</a>
-          </div>
-        </div>
       </div>
     </main>
     <Footer />
-    </>
+    </div>
   );
 } 

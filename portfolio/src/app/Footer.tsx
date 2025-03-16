@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="bg-black text-white px-8 py-4">
-      <div className="max-w-[1400px] mx-auto flex justify-between items-center text-sm">
+    <footer className="bg-black text-white mt-16 px-8 py-4">
+      <div className="max-w-[1400px] mx-auto flex mb-16 justify-between items-center text-sm">
         <div>CONTACT US</div>
         <div className="flex gap-8">
           <div>
