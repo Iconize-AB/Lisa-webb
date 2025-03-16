@@ -159,7 +159,7 @@ export default function About() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             <div>
               <img 
-                src="/Ivar.jpeg" 
+                src="/love.png" 
                 alt="Love Molin" 
                 className="aspect-square object-cover w-full mb-4"
               />
@@ -175,7 +175,7 @@ export default function About() {
             </div>
             <div>
               <img 
-                src="/Ivar.jpeg" 
+                src="/seb.png" 
                 alt="Seb" 
                 className="aspect-square object-cover w-full mb-4"
               />
@@ -183,7 +183,7 @@ export default function About() {
             </div>
             <div>
               <img 
-                src="/Ivar.jpeg" 
+                src="/albert.png" 
                 alt="Albert" 
                 className="aspect-square object-cover w-full mb-4"
               />

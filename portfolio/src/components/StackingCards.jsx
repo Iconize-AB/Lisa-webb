@@ -24,8 +24,7 @@ const projects = [
     solution:
       "We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.",
     background:
-      "Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.",
-    solution:
+      "Life rarely follows a straight path. Alike the creative process, it's more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.",    solution:
       "We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.",
     images: [
       "berghs/Enter_berghs_staket.png",
@@ -331,9 +330,19 @@ const StackingCards = () => {
   return (
     <Wrapper ref={wrapperRef} $isVisible={isVisible}>
       <Container>
-        <ProjectTitle className="project-title" ref={titleRef}>
-          {focusedProject}
-        </ProjectTitle>
+        <TitleContainer ref={titleRef}>
+          <Timeline>
+            {projects.find(p => p.projectName === focusedProject)?.details?.timeline}
+          </Timeline>
+          <ProjectTitle className="project-title">
+            {focusedProject}
+            <TechnologiesList>
+              {projects.find(p => p.projectName === focusedProject)?.details?.technologies.map((tech, index) => (
+                <span key={index}>{tech}</span>
+              ))}
+            </TechnologiesList>
+          </ProjectTitle>
+        </TitleContainer>
         <Cards>
           {projects.map((project) => (
             <Card
@@ -436,16 +445,48 @@ const Title = styled.h1`
   margin-bottom: 3rem;
 `;
 
+const TitleContainer = styled.div`
+  position: relative;
+  text-align: center;
+`;
+
+const Timeline = styled.div`
+  position: absolute;
+  top: -2rem;
+  text-decoration: none;
+  right: 0;
+  width: 80%;
+  font-family: "Neue Haas Display Black";
+  font-size: 1rem;
+  color: #888;
+  
+  @media (max-width: 768px) {
+    right: 1rem;
+  }
+`;
+
 const ProjectTitle = styled.h2`
   text-align: center;
   font-size: 3.5rem;
   min-height: 2.5rem;
   color: white;
-  top: 80px;
+  top: 100px;
   font-family: "Neue Haas Display Black";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   @media (max-width: 768px) {
-    top: 120px !important; // Override any inline styles
+    top: 120px !important;
   }
+`;
+
+const TechnologiesList = styled.span`
+  font-size: 1rem;
+  color: #888;
+  display: flex;
+  gap: 20px;
+  font-family: "Neue Haas Display";
 `;
 
 const Cards = styled.div`
