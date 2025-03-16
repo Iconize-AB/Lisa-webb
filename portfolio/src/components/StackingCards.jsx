@@ -22,8 +22,7 @@ const projects = [
     projectName: 'ENTER BERGHS',
     title: 'ENTER BERGHS',
     solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
-    background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',        images: [            'berghs/Enter_berghs_staket.png',      
-      'berghs//Monter.png',      
+    background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',        images: [            'berghs/Enter_berghs_staket.png',            'berghs//Monter.png',      
       'berghs/skylt_berghs.png',      
       'berghs/från_till.jpg',      
       'berghs/Berghs_logos.png',      
@@ -242,12 +241,15 @@ const StackingCards = () => {
 
   // Update handleNextProject to include loading state
   const handleNextProject = () => {
-    const nextIndex = (currentProjectIndex + 1) % projects.length;
+    const validProjects = projects.filter(p => p.src); // Filter out empty projects
+    const currentValidIndex = validProjects.findIndex(p => p.id === selectedProject.id);
+    const nextIndex = (currentValidIndex + 1) % validProjects.length;
+    const nextProject = validProjects[nextIndex];
+    
     const overlayContent = document.querySelector('.overlay-content');
     
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
 
-    // Fade out current content
     gsap.to(overlayContent, {
       opacity: 0,
       duration: 0.5,
@@ -255,18 +257,16 @@ const StackingCards = () => {
         if (overlayContent) {
           overlayContent.scrollTop = 0;
         }
-        setSelectedProject(projects[nextIndex]);
-        setCurrentProjectIndex(nextIndex);
+        setSelectedProject(nextProject);
+        setCurrentProjectIndex(nextProject.id);
         
-        // Simulate loading time
         setTimeout(() => {
-          setIsLoading(false); // End loading
-          // Fade in new content
+          setIsLoading(false);
           gsap.to(overlayContent, {
             opacity: 1,
             duration: 0.5
           });
-        }, 800); // Adjust timing as needed
+        }, 800);
       }
     });
   };
