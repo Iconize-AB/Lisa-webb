@@ -1,108 +1,121 @@
 // StackingCards.jsx
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import styled from 'styled-components';
+import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import styled from "styled-components";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { 
-    id: 0, 
-    src: '',
-    projectName: '',
-    title: '',
-    background: '',
-    solution: '',
+  {
+    id: 0,
+    src: "",
+    projectName: "",
+    title: "",
+    background: "",
+    solution: "",
   },
-  { 
-    id: 1, 
-    src: '/berghs.png',
-    projectName: 'ENTER BERGHS',
-    title: 'ENTER BERGHS',
-    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',
-    background: 'Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.',    solution: 'We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.',        images: [            'berghs/Enter_berghs_staket.png',            'berghs//Monter.png',            'berghs/skylt_berghs.png',      
-      'berghs/från_till.jpg',      
-      'berghs/Berghs_logos.png',      
-      'berghs/flagga_berghs.png',
-      'berghs/Berghs_popup_16_9 copy.png',
-      'berghs/Programikoner.gif',
-      'berghs/Berghs.gif',
-    ],
-    details: {
-      role: 'Lead Designer',
-      timeline: '2023-2024',
-      technologies: ['React', 'GSAP', 'Figma']
-    }
-  },
-  { 
-    id: 2, 
-    src: '/hyllie/Förstabild.png',
-    projectName: 'SKÅNSK LAGER',
-    title: 'SKÅNSK LAGER',
-    background: 'Hyllie Brewery is one of the largest beer producers within the region of Skåne.',
-    solution: 'Drawing inspiration from this vast and beautiful area, we created a rebranding of their bestseller: Hyllie Brewery is one of the largest beer producers within the region of Skåne.',
+  {
+    id: 1,
+    src: "/berghs.png",
+    projectName: "ENTER BERGHS",
+    title: "ENTER BERGHS",
+    solution:
+      "We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.",
+    background:
+      "Life rarely follows a straight path. Alike the creative process, it’s more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions. We created a scalable and dynamic campaign, showcasing all the squiggly ways that leads to the school, in an effort to appeal to a broader audience, for years to come.",
+    solution:
+      "We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.",
     images: [
-      'hyllie/Förstabild.png',
-      'hyllie/Flak.png',
-      'hyllie/Fält.png',
-      'hyllie/ölglas_färgpalett.png',
-      'hyllie/burk_vetestrå.png'
+      "berghs/Enter_berghs_staket.png",
+      "berghs//Monter.png",
+      "berghs/skylt_berghs.png",
+      "berghs/från_till.jpg",
+      "berghs/Berghs_logos.png",
+      "berghs/flagga_berghs.png",
+      "berghs/Berghs_popup_16_9 copy.png",
+      "berghs/Programikoner.gif",
+      "berghs/Berghs.gif",
     ],
     details: {
-      role: 'Lead Designer',
-      timeline: '2024-2025',
-      technologies: ['Rebranding', 'Strategy', 'Graphic Design']
-    }
+      role: "Lead Designer",
+      timeline: "2023-2024",
+      technologies: ["React", "GSAP", "Figma"],
+    },
   },
-  { 
-    id: 3, 
-    src: '/volanders/Förstabilden.png',
-    projectName: 'VOLANDERS',
-    title: 'VOLANDERS',
-    background: 'Volanders is a newly opened eventspace in the old slaughterhouse quarter of Stockholm, how can we infuse the history of the industrial building into the new identity?',
-    solution: 'Historical Parties. Mixing the old with the new!',
+  {
+    id: 2,
+    src: "/hyllie/Förstabild.png",
+    projectName: "SKÅNSK LAGER",
+    title: "SKÅNSK LAGER",
+    background:
+      "Hyllie Brewery is one of the largest beer producers within the region of Skåne.",
+    solution:
+      "Drawing inspiration from this vast and beautiful area, we created a rebranding of their bestseller: Hyllie Brewery is one of the largest beer producers within the region of Skåne.",
     images: [
-      'volanders/Förstabilden.png',
-      'volanders/DÅ_NU.png',
-      'volanders/färgpalett.png',
-      'volanders/Bildspel_Logotyp.gif',
-      'volanders/OOH.png'
+      "hyllie/Förstabild.png",
+      "hyllie/Flak.png",
+      "hyllie/Fält.png",
+      "hyllie/ölglas_färgpalett.png",
+      "hyllie/burk_vetestrå.png",
     ],
     details: {
-      role: 'Lead Designer',
-      timeline: '2024-2025',
-      technologies: ['Art Direction', 'Graphic Design', 'Strategy']
-    }
+      role: "Lead Designer",
+      timeline: "2024-2025",
+      technologies: ["Rebranding", "Strategy", "Graphic Design"],
+    },
   },
-  { 
-    id: 4, 
-    src: 'dubbla_deli/Förstabild.png',
-    projectName: 'DUBBLA DELI',
-    title: 'DUBBLA DELI',
-    background: 'Dubbla, Stockholms latest & greatest sandwich restaurant, needed to get the word out about their new spot in Hötorgshallen.',
-    solution: "With a smaller budget, we created low-cost communication, using take-away bags, loyalty cards & t-shirts as brand megaphones, in true deli fashion. We then partnered with Sweden's other favorite Dubbla: Doubble, to offer double dates a special sandwich deal",
+  {
+    id: 3,
+    src: "/volanders/Förstabilden.png",
+    projectName: "VOLANDERS",
+    title: "VOLANDERS",
+    background:
+      "Volanders is a newly opened eventspace in the old slaughterhouse quarter of Stockholm, how can we infuse the history of the industrial building into the new identity?",
+    solution: "Historical Parties. Mixing the old with the new!",
     images: [
-      'dubbla_deli/dubbla_staket.png',
-      'dubbla_deli/Krökarkortet.png',
-      'dubbla_deli/Påse.png',
-      'dubbla_deli/Översikt.png',
-      'dubbla_deli/mobil.png'
+      "volanders/Förstabilden.png",
+      "volanders/DÅ_NU.png",
+      "volanders/färgpalett.png",
+      "volanders/Bildspel_Logotyp.gif",
+      "volanders/OOH.png",
     ],
     details: {
-      role: 'Lead Designer',
-      timeline: '2024-2025',
-      technologies: ['Strategy', 'Concept', 'Graphic Design']
-    }
+      role: "Lead Designer",
+      timeline: "2024-2025",
+      technologies: ["Art Direction", "Graphic Design", "Strategy"],
+    },
   },
-  { 
+  {
+    id: 4,
+    src: "dubbla_deli/Förstabild.png",
+    projectName: "DUBBLA DELI",
+    title: "DUBBLA DELI",
+    background:
+      "Dubbla, Stockholms latest & greatest sandwich restaurant, needed to get the word out about their new spot in Hötorgshallen.",
+    solution:
+      "With a smaller budget, we created low-cost communication, using take-away bags, loyalty cards & t-shirts as brand megaphones, in true deli fashion. We then partnered with Sweden's other favorite Dubbla: Doubble, to offer double dates a special sandwich deal",
+    images: [
+      "dubbla_deli/dubbla_staket.png",
+      "dubbla_deli/Krökarkortet.png",
+      "dubbla_deli/Påse.png",
+      "dubbla_deli/Översikt.png",
+      "dubbla_deli/mobil.png",
+    ],
+    details: {
+      role: "Lead Designer",
+      timeline: "2024-2025",
+      technologies: ["Strategy", "Concept", "Graphic Design"],
+    },
+  },
+  {
     id: 5,
-    src: '',
-    projectName: '',
-    title: '',
-    background: '',
-    solution: '',
+    src: "",
+    projectName: "",
+    title: "",
+    background: "",
+    solution: "",
   },
 ];
 
@@ -122,21 +135,21 @@ const StackingCards = () => {
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
-    document.body.style.overflow = 'hidden';
-    
+    document.body.style.overflow = "hidden";
+
     // Use requestAnimationFrame to ensure DOM is updated
     requestAnimationFrame(() => {
-      const overlay = document.querySelector('.project-overlay');
-      const content = document.querySelector('.overlay-content');
-      
+      const overlay = document.querySelector(".project-overlay");
+      const content = document.querySelector(".overlay-content");
+
       if (overlay && content) {
-        overlay.style.visibility = 'visible';
-        content.style.visibility = 'visible';
-        
+        overlay.style.visibility = "visible";
+        content.style.visibility = "visible";
+
         gsap.to(overlay, {
           opacity: 1,
           duration: 0.5,
-          ease: 'power2.inOut'
+          ease: "power2.inOut",
         });
 
         gsap.to(content, {
@@ -144,41 +157,43 @@ const StackingCards = () => {
           y: 0,
           scale: 1,
           duration: 0.8,
-          ease: 'power2.out',
-          delay: 0.2
+          ease: "power2.out",
+          delay: 0.2,
         });
       }
     });
   };
 
   const handleCloseProject = () => {
-    const overlay = document.querySelector('.project-overlay');
-    const content = document.querySelector('.overlay-content');
+    const overlay = document.querySelector(".project-overlay");
+    const content = document.querySelector(".overlay-content");
 
     gsap.to([overlay, content], {
       opacity: 0,
       duration: 0.5,
-      ease: 'power2.inOut',
+      ease: "power2.inOut",
       onComplete: () => {
         setSelectedProject(null);
-        document.body.style.overflow = 'unset';
+        document.body.style.overflow = "unset";
         if (overlay && content) {
-          overlay.style.visibility = 'hidden';
-          content.style.visibility = 'hidden';
+          overlay.style.visibility = "hidden";
+          content.style.visibility = "hidden";
         }
-      }
+      },
     });
   };
 
   // Add this function to handle the animation setup
   const setupAnimations = () => {
-    const cards = gsap.utils.toArray('.stackingcard').filter(card => card instanceof Element);
+    const cards = gsap.utils
+      .toArray(".stackingcard")
+      .filter((card) => card instanceof Element);
     const lastCardIndex = cards.length - 1;
 
     // Adjust these values to position cards higher
     const cardSpacing = 40;
-    const startPosition = window.innerWidth < 768 ? '35%' : '25%';  // Changed from 40% to 30%
-    const endPosition = window.innerWidth < 768 ? '15%' : '20%';    // Changed from 20% to 10%
+    const startPosition = window.innerWidth < 768 ? "35%" : "25%"; // Changed from 40% to 30%
+    const endPosition = window.innerWidth < 768 ? "15%" : "20%"; // Changed from 20% to 10%
 
     // Calculate total scroll height needed
     const totalHeight = cardSpacing * lastCardIndex + window.innerHeight * 0.6;
@@ -187,13 +202,13 @@ const StackingCards = () => {
     }
 
     // Clear existing ScrollTriggers
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
     // Animate each card
     const cardAnimations = cards.map((card, i) => {
       const scaleAnim = gsap.to(card, {
-        scale: () => 0.8 + (i * 0.035),
-        ease: 'none',
+        scale: () => 0.8 + i * 0.035,
+        ease: "none",
         scrollTrigger: {
           trigger: card,
           start: `top-=${cardSpacing * i} ${startPosition}`,
@@ -207,8 +222,8 @@ const StackingCards = () => {
       const pinAnim = ScrollTrigger.create({
         trigger: card,
         start: `top-=${cardSpacing * i} ${startPosition}`,
-        end: i === lastCardIndex ? `+=${window.innerHeight}` : 'top center',
-        endTrigger: i === lastCardIndex ? card : '.end-element',
+        end: i === lastCardIndex ? `+=${window.innerHeight}` : "top center",
+        endTrigger: i === lastCardIndex ? card : ".end-element",
         pin: true,
         pinSpacing: false,
         id: `card-${i}`,
@@ -220,11 +235,11 @@ const StackingCards = () => {
     // Pin title
     const titlePin = ScrollTrigger.create({
       trigger: titleRef.current,
-      start: 'top 10%',
+      start: "top 10%",
       end: (self) => self.previous().end,
       pin: true,
       pinSpacing: false,
-      id: 'title',
+      id: "title",
     });
 
     return [...cardAnimations.flat(), titlePin];
@@ -233,20 +248,24 @@ const StackingCards = () => {
   // Modify getOrderedProjects to only return current project
   const getOrderedProjects = (selectedProject) => {
     if (!selectedProject) return [];
-    const selectedIndex = projects.findIndex(p => p.id === selectedProject.id);
+    const selectedIndex = projects.findIndex(
+      (p) => p.id === selectedProject.id
+    );
     setCurrentProjectIndex(selectedIndex);
     return [projects[selectedIndex]];
   };
 
   // Update handleNextProject to include loading state
   const handleNextProject = () => {
-    const validProjects = projects.filter(p => p.src); // Filter out empty projects
-    const currentValidIndex = validProjects.findIndex(p => p.id === selectedProject.id);
+    const validProjects = projects.filter((p) => p.src); // Filter out empty projects
+    const currentValidIndex = validProjects.findIndex(
+      (p) => p.id === selectedProject.id
+    );
     const nextIndex = (currentValidIndex + 1) % validProjects.length;
     const nextProject = validProjects[nextIndex];
-    
-    const overlayContent = document.querySelector('.overlay-content');
-    
+
+    const overlayContent = document.querySelector(".overlay-content");
+
     setIsLoading(true);
 
     gsap.to(overlayContent, {
@@ -258,15 +277,15 @@ const StackingCards = () => {
         }
         setSelectedProject(nextProject);
         setCurrentProjectIndex(nextProject.id);
-        
+
         setTimeout(() => {
           setIsLoading(false);
           gsap.to(overlayContent, {
             opacity: 1,
-            duration: 0.5
+            duration: 0.5,
           });
         }, 800);
-      }
+      },
     });
   };
 
@@ -284,12 +303,12 @@ const StackingCards = () => {
     // Cleanup function
     return () => {
       clearTimeout(timer);
-      animations.forEach(anim => {
+      animations.forEach((anim) => {
         if (anim.kill) anim.kill();
         if (anim.scrollTrigger) anim.scrollTrigger.kill();
       });
       if (spacerRef.current) {
-        spacerRef.current.style.height = '0px';
+        spacerRef.current.style.height = "0px";
       }
     };
   }, []); // Empty dependency array to run only on mount
@@ -306,11 +325,13 @@ const StackingCards = () => {
   return (
     <Wrapper ref={wrapperRef} $isVisible={isVisible}>
       <Container>
-        <ProjectTitle className="project-title" ref={titleRef}>{focusedProject}</ProjectTitle>
+        <ProjectTitle className="project-title" ref={titleRef}>
+          {focusedProject}
+        </ProjectTitle>
         <Cards>
           {projects.map((project) => (
-            <Card 
-              key={project.id} 
+            <Card
+              key={project.id}
               className="stackingcard"
               onClick={() => handleProjectClick(project)}
             >
@@ -325,27 +346,30 @@ const StackingCards = () => {
         <EndElement className="end-element" />
       </Container>
       <Spacer ref={spacerRef} />
-      
+
       {/* Project Overlay */}
       {selectedProject && (
-        <ProjectOverlay className="project-overlay" $isVisible={!!selectedProject}>
+        <ProjectOverlay
+          className="project-overlay"
+          $isVisible={!!selectedProject}
+        >
           <CloseButton onClick={handleCloseProject}>×</CloseButton>
-          
+
           {/* Add loading overlay */}
           {isLoading && (
             <LoadingOverlay>
               <LoadingSpinner />
             </LoadingOverlay>
           )}
-          
+
           <OverlayContent className="overlay-content">
             {/* Show only current project */}
             <div>
               <ProjectHero>
                 {selectedProject.src ? (
-                  <HeroImage 
-                    src={selectedProject.src} 
-                    alt={selectedProject.projectName} 
+                  <HeroImage
+                    src={selectedProject.src}
+                    alt={selectedProject.projectName}
                   />
                 ) : (
                   <EmptyCard />
@@ -355,24 +379,28 @@ const StackingCards = () => {
               <ProjectSection>
                 {/* <HeroTitle>{selectedProject?.title || ''}</HeroTitle> */}
                 <SectionTitle>BACKGROUND</SectionTitle>
-                <SectionText>{selectedProject?.background || ''}</SectionText>
+                <SectionText>{selectedProject?.background || ""}</SectionText>
               </ProjectSection>
 
               <ProjectSection>
                 <SectionTitle>SOLUTION</SectionTitle>
-                <SectionText>{selectedProject?.solution || ''}</SectionText>
+                <SectionText>{selectedProject?.solution || ""}</SectionText>
               </ProjectSection>
 
               <ProjectGallery>
                 {selectedProject?.images?.map((image, idx) => (
-                  <GalleryImage key={idx} src={image} alt={`Project detail ${idx + 1}`} />
+                  <GalleryImage
+                    key={idx}
+                    src={image}
+                    alt={`Project detail ${idx + 1}`}
+                  />
                 ))}
               </ProjectGallery>
 
               {/* Add Next Project button */}
               <NextProjectContainer>
                 <NextProjectButton onClick={handleNextProject}>
-                  Next Project →
+                  Next Project
                 </NextProjectButton>
               </NextProjectContainer>
             </div>
@@ -386,7 +414,7 @@ const StackingCards = () => {
 // Styled Components
 const Wrapper = styled.div`
   overflow: hidden;
-  opacity: ${props => props.$isVisible ? 1 : 0};
+  opacity: ${(props) => (props.$isVisible ? 1 : 0)};
   transition: opacity 1s ease-in-out;
 `;
 
@@ -408,7 +436,7 @@ const ProjectTitle = styled.h2`
   min-height: 2.5rem;
   color: white;
   top: 80px;
-  font-family: 'Neue Haas Display Black';
+  font-family: "Neue Haas Display Black";
   @media (max-width: 768px) {
     top: 120px !important; // Override any inline styles
   }
@@ -466,7 +494,7 @@ const ProjectOverlay = styled.div`
   overflow-y: auto;
   opacity: 0;
   visibility: hidden;
-  display: ${({ $isVisible }) => $isVisible ? 'block' : 'none'};
+  display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
 `;
 
 const CloseButton = styled.button`
@@ -511,14 +539,14 @@ const HeroTitle = styled.h1`
   font-size: 4rem;
   color: black;
   font-weight: bold;
-  font-family: 'Neue Haas Display Black', sans-serif;
+  font-family: "Neue Haas Display Black", sans-serif;
 `;
 
 const ProjectSection = styled.div`
   padding: 4rem 5rem;
   margin: 0 auto;
   max-width: 1200px;
-  
+
   @media (max-width: 768px) {
     padding: 2rem 2rem;
   }
@@ -527,7 +555,7 @@ const ProjectSection = styled.div`
 const SectionTitle = styled.h2`
   font-size: 1rem;
   font-weight: bold;
-  font-family: 'Neue Haas Display Black', sans-serif;
+  font-family: "Neue Haas Display Black", sans-serif;
   color: #666;
   margin-bottom: 1rem;
   letter-spacing: 0.05em;
@@ -537,9 +565,9 @@ const SectionText = styled.p`
   font-size: 1.8rem;
   line-height: 1.4;
   color: #000;
-  font-family: 'Neue Haas Display', sans-serif;
+  font-family: "Neue Haas Display", sans-serif;
   max-width: 800px;
-  
+
   @media (max-width: 768px) {
     font-size: 1.4rem;
   }
@@ -581,11 +609,11 @@ const ProjectGallery = styled.div`
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    
+
     img:first-child {
       grid-column: 1 / -1;
     }
-    
+
     // Remove this rule that was causing the last odd image to span full width
     /* img:last-child:nth-child(odd) {
       grid-column: 1 / -1;
@@ -613,19 +641,56 @@ const NextProjectContainer = styled.div`
 `;
 
 const NextProjectButton = styled.button`
-  padding: 1rem 2rem;
+  position: relative;
+  padding: 1.5rem 3rem;
   font-size: 1.2rem;
-  background-color: black;
-  color: white;
+  background-color: transparent;
+  color: black;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  font-family: "Neue Haas Display", sans-serif;
   transition: all 0.3s ease;
-  font-family: 'Neue Haas Display', sans-serif;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  &:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
 
   &:hover {
-    transform: translateX(5px);
-    background-color: #333;
+    letter-spacing: 2px;
+  }
+
+  &::after {
+    content: "→";
+    position: relative;
+    top: 2px;
+    margin-left: 12px;
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+  }
+
+  &:hover::after {
+    transform: translateX(8px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem 2rem;
+    font-size: 1rem;
   }
 `;
 
@@ -652,8 +717,12 @@ const LoadingSpinner = styled.div`
   animation: spin 1s linear infinite;
 
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
 
