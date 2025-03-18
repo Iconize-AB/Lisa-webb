@@ -39,19 +39,23 @@ export default function About() {
   const [clientsRef, clientsVisible] = useInView();
 
   const services = {
-    'Branding': { color: 'text-white' },
-    'Art Direction': { color: 'text-white' },
-    'Animation': { color: 'text-gray-500' },
-    'Strategy': { color: 'text-gray-500' },
-    'Design': { color: 'text-gray-500' }
+    'Advertising': { color: 'text-white' },
+    'Brand Design': { color: 'text-white' },
+    'Brand Strategy': { color: 'text-gray-500' },
+    'Motion Design': { color: 'text-gray-500' },
   };
 
   const serviceContent = {
-    'Branding': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
-    'Art Direction': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
-    'Animation': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
-    'Strategy': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
-    'Design': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress."
+    'Advertising': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
+    'Brand Design': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
+    'Brand Strategy': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
+    'Motion Design': "Motion Design Movement brings design to life. We create everything from simple, striking animations to fully developed motion systems and 3D motion.
+
+    2D & 3D Animation: From simple logo animations to full-blown animated 2D and 3D videos.
+    •    Motion Graphics: Moving visuals that make information exciting.
+    •    Film & Video Production: High-quality video that tells your story.
+    •    Visual Effects (VFX): The finishing touch that makes your videos pop.
+    •    Social & Digital Content: Quick, engaging, and designed to go viral.",
   };
 
   return (
