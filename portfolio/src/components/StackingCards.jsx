@@ -40,7 +40,7 @@ const projects = [
     details: {
       role: "Lead Designer",
       timeline: "2023-2024",
-      areas: ["Strategy", "Concept", "Graphic Design"],
+      areas: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"],
     },
   },
   {
@@ -62,7 +62,7 @@ const projects = [
     details: {
       role: "Lead Designer",
       timeline: "2024-2025",
-      areas: ["Rebranding", "Strategy", "Graphic Design"],
+      areas: ["Brand Design", "Brand Strategy"],
     },
   },
   {
@@ -83,7 +83,7 @@ const projects = [
     details: {
       role: "Lead Designer",
       timeline: "2024-2025",
-      areas: ["Art Direction", "Graphic Design", "Strategy"],
+      areas: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"],
     },
   },
   {
@@ -105,7 +105,7 @@ const projects = [
     details: {
       role: "Lead Designer",
       timeline: "2024-2025",
-      areas: ["Strategy", "Concept", "Graphic Design"],
+      areas: ["Brand Strategy", "Advertising"],
     },
   },
   {
