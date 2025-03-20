@@ -40,7 +40,7 @@ const projects = [
     details: {
       role: "Lead Designer",
       timeline: "2023-2024",
-      technologies: ["React", "GSAP", "Figma"],
+      areas: ["Strategy", "Concept", "Graphic Design"],
     },
   },
   {
@@ -62,7 +62,7 @@ const projects = [
     details: {
       role: "Lead Designer",
       timeline: "2024-2025",
-      technologies: ["Rebranding", "Strategy", "Graphic Design"],
+      areas: ["Rebranding", "Strategy", "Graphic Design"],
     },
   },
   {
@@ -83,7 +83,7 @@ const projects = [
     details: {
       role: "Lead Designer",
       timeline: "2024-2025",
-      technologies: ["Art Direction", "Graphic Design", "Strategy"],
+      areas: ["Art Direction", "Graphic Design", "Strategy"],
     },
   },
   {
@@ -105,7 +105,7 @@ const projects = [
     details: {
       role: "Lead Designer",
       timeline: "2024-2025",
-      technologies: ["Strategy", "Concept", "Graphic Design"],
+      areas: ["Strategy", "Concept", "Graphic Design"],
     },
   },
   {
@@ -336,11 +336,11 @@ const StackingCards = () => {
           </Timeline>
           <ProjectTitle className="project-title">
             {focusedProject}
-            <TechnologiesList>
-              {projects.find(p => p.projectName === focusedProject)?.details?.technologies.map((tech, index) => (
-                <span key={index}>{tech}</span>
+            <AreasList>
+              {projects.find(p => p.projectName === focusedProject)?.details?.areas.map((area, index) => (
+                <span key={index}>{area}</span>
               ))}
-            </TechnologiesList>
+            </AreasList>
           </ProjectTitle>
         </TitleContainer>
         <Cards>
@@ -467,24 +467,29 @@ const Timeline = styled.div`
 
 const ProjectTitle = styled.h2`
   text-align: center;
+  position: relative;
   font-size: 3.5rem;
   min-height: 2.5rem;
   color: white;
-  top: 100px;
+  margin-top: 2rem;
   font-family: "Neue Haas Display Black";
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  
   @media (max-width: 768px) {
-    top: 120px !important;
+    font-size: 1.5rem;
+    top: 80px !important;
+    margin-top: 1rem;
   }
 `;
 
-const TechnologiesList = styled.span`
+const AreasList = styled.span`
   font-size: 1rem;
   color: #888;
   display: flex;
+  margin-bottom: 60px;
   gap: 20px;
   font-family: "Neue Haas Display";
 `;
