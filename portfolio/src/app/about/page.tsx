@@ -32,7 +32,7 @@ function useInView(options = {}): [RefObject<HTMLDivElement>, boolean] {
 }
 
 export default function About() {
-  const [selectedService, setSelectedService] = useState('Branding');
+  const [selectedService, setSelectedService] = useState('Advertising');
   const [headerRef, headerVisible] = useInView();
   const [servicesRef, servicesVisible] = useInView();
   const [teamRef, teamVisible] = useInView();
@@ -41,7 +41,6 @@ export default function About() {
   const services = {
     'Advertising': { color: 'text-white' },
     'Brand Design': { color: 'text-white' },
-    'Animation': { color: 'text-gray-500' },
     'Brand Strategy': { color: 'text-gray-500' },
     'Motion Design': { color: 'text-gray-500' }
   };
@@ -59,7 +58,7 @@ Logo Design & Visual Identity: Crafting distinctive marks and comprehensive visu
 
 • Brand Collateral: Designing all touchpoints of your brand experience.`,
 
-    'Art Direction': `Creative Vision that sets the tone. We guide the visual language of your projects from concept to execution.
+    'Brand Design': `Creative Vision that sets the tone. We guide the visual language of your projects from concept to execution.
 
 Creative Concept Development: Transforming ideas into compelling visual narratives.
 
@@ -71,7 +70,7 @@ Creative Concept Development: Transforming ideas into compelling visual narrativ
 
 • Creative Consultation: Expert guidance on visual decision-making.`,
 
-    'Animation': `Dynamic Movement that captures attention. We bring static elements to life through carefully crafted animation.
+    'Brand Strategy': `Dynamic Movement that captures attention. We bring static elements to life through carefully crafted animation.
 
 Character Animation: Creating engaging animated personalities and stories.
 
@@ -82,18 +81,6 @@ Character Animation: Creating engaging animated personalities and stories.
 • Explainer Videos: Making complex information accessible and engaging.
 
 • Social Media Animation: Creating scroll-stopping animated content.`,
-
-    'Strategy': `Strategic Planning that drives results. We develop comprehensive approaches to achieve your business objectives.
-
-Market Analysis: Understanding your competitive landscape and opportunities.
-
-• Target Audience Research: Identifying and understanding your key demographics.
-
-• Campaign Planning: Developing effective multi-channel marketing strategies.
-
-• Performance Metrics: Setting and tracking meaningful KPIs.
-
-• Growth Strategy: Planning for sustainable business expansion.`,
 
     'Motion Design': `Motion Design Movement brings design to life. We create everything from simple, striking animations to fully developed motion systems and 3D motion.
 
