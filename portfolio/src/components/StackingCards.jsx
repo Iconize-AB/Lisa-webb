@@ -378,7 +378,6 @@ const StackingCards = () => {
           )}
 
           <OverlayContent className="overlay-content">
-            {/* Show only current project */}
             <div>
               <ProjectHero>
                 {selectedProject.src ? (
@@ -391,15 +390,30 @@ const StackingCards = () => {
                 )}
               </ProjectHero>
 
+              {/* Add Project Details Section */}
               <ProjectSection>
-                {/* <HeroTitle>{selectedProject?.title || ''}</HeroTitle> */}
-                <SectionTitle>BACKGROUND</SectionTitle>
-                <SectionText>{selectedProject?.background || ""}</SectionText>
-              </ProjectSection>
+                <ProjectHeader>
+                  <ProjectName>{selectedProject?.projectName}</ProjectName>
+                  <AreasContainer>
+                    {selectedProject?.details?.areas.map((area, index) => (
+                      <span key={index}>{area}</span>
+                    ))}
+                  </AreasContainer>
+                </ProjectHeader>
 
-              <ProjectSection>
-                <SectionTitle>SOLUTION</SectionTitle>
-                <SectionText>{selectedProject?.solution || ""}</SectionText>
+                <TimelineContainer>{selectedProject?.details?.timeline}</TimelineContainer>
+
+                <ContentContainer>
+                  <ContentSection>
+                    <SectionTitle>BACKGROUND</SectionTitle>
+                    <SectionText>{selectedProject?.background}</SectionText>
+                  </ContentSection>
+
+                  <ContentSection>
+                    <SectionTitle>SOLUTION</SectionTitle>
+                    <SectionText>{selectedProject?.solution}</SectionText>
+                  </ContentSection>
+                </ContentContainer>
               </ProjectSection>
 
               <ProjectGallery>
@@ -452,16 +466,17 @@ const TitleContainer = styled.div`
 
 const Timeline = styled.div`
   position: absolute;
-  top: -2rem;
+  top: 0.8rem;
   text-decoration: none;
-  right: 0;
+  right: -2rem;
   width: 80%;
   font-family: "Neue Haas Display Black";
   font-size: 1rem;
   color: #888;
   
   @media (max-width: 768px) {
-    right: 1rem;
+    right: 0;
+    top: 3rem;
   }
 `;
 
@@ -491,7 +506,6 @@ const AreasList = styled.span`
   display: flex;
   margin-bottom: 60px;
   gap: 20px;
-  font-family: "Neue Haas Display";
 `;
 
 const Cards = styled.div`
@@ -595,51 +609,93 @@ const HeroTitle = styled.h1`
 `;
 
 const ProjectSection = styled.div`
-  padding: 4rem 5rem;
-  margin: 0 auto;
-  max-width: 1200px;
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  gap: 2rem;
 
   @media (max-width: 768px) {
-    padding: 2rem 2rem;
+    padding: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 `;
 
-const SectionTitle = styled.h2`
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: "Neue Haas Display Black", sans-serif;
-  color: #666;
-  margin-bottom: 1rem;
-  letter-spacing: 0.05em;
-`;
-
-const SectionText = styled.p`
-  font-size: 1.8rem;
-  line-height: 1.4;
-  color: #000;
-  font-family: "Neue Haas Display", sans-serif;
-  max-width: 800px;
-
-  @media (max-width: 768px) {
-    font-size: 1.4rem;
-  }
-`;
-
-const DetailItem = styled.div`
+const TimelineContainer = styled.div`
+  grid-row: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
+  
+  @media (max-width: 768px) {
+    grid-row: 2;
+    font-size: 0.9rem;
+  }
 `;
 
-const DetailLabel = styled.span`
-  font-size: 0.9rem;
+const ProjectHeader = styled.div`
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+`;
+
+const ProjectName = styled.h1`
+  font-size: 4rem;
+  margin: 0;
+  font-family: "Neue Haas Display", sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const AreasContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
   text-transform: uppercase;
-  color: #666;
 `;
 
-const DetailText = styled.span`
-  font-size: 1.1rem;
-  color: #333;
+const ContentContainer = styled.div`
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+
+  @media (max-width: 768px) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+`;
+
+const ContentSection = styled.div`
+  margin-bottom: 4rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const SectionTitle = styled.div`
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+`;
+
+const SectionText = styled.div`
+  font-size: 2rem;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const ProjectGallery = styled.div`
@@ -775,6 +831,30 @@ const LoadingSpinner = styled.div`
     100% {
       transform: rotate(360deg);
     }
+  }
+`;
+
+// Add these styled components
+const ProjectDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-family: "Neue Haas Display", sans-serif;
+`;
+
+const DetailGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const DetailValue = styled.span`
+  font-size: 2rem;
+  color: #000;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
   }
 `;
 

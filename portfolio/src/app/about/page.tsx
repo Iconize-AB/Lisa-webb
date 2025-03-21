@@ -41,21 +41,71 @@ export default function About() {
   const services = {
     'Advertising': { color: 'text-white' },
     'Brand Design': { color: 'text-white' },
+    'Animation': { color: 'text-gray-500' },
     'Brand Strategy': { color: 'text-gray-500' },
-    'Motion Design': { color: 'text-gray-500' },
+    'Motion Design': { color: 'text-gray-500' }
   };
 
   const serviceContent = {
-    'Advertising': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
-    'Brand Design': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
-    'Brand Strategy': "Founded as a Praktikbyrå. In today's fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.",
-    'Motion Design': "Motion Design Movement brings design to life. We create everything from simple, striking animations to fully developed motion systems and 3D motion.
+    'Advertising': `Brand Identity Development that tells your story. We create cohesive and memorable brand experiences that resonate with your audience.
 
-    2D & 3D Animation: From simple logo animations to full-blown animated 2D and 3D videos.
-    •    Motion Graphics: Moving visuals that make information exciting.
-    •    Film & Video Production: High-quality video that tells your story.
-    •    Visual Effects (VFX): The finishing touch that makes your videos pop.
-    •    Social & Digital Content: Quick, engaging, and designed to go viral.",
+Logo Design & Visual Identity: Crafting distinctive marks and comprehensive visual systems.
+
+• Brand Strategy: Defining your unique position in the market.
+
+• Brand Guidelines: Creating comprehensive rules for consistent brand application.
+
+• Brand Voice & Messaging: Developing your unique tone and communication style.
+
+• Brand Collateral: Designing all touchpoints of your brand experience.`,
+
+    'Art Direction': `Creative Vision that sets the tone. We guide the visual language of your projects from concept to execution.
+
+Creative Concept Development: Transforming ideas into compelling visual narratives.
+
+• Visual Storytelling: Crafting cohesive visual experiences across all mediums.
+
+• Project Leadership: Guiding creative teams toward unified goals.
+
+• Style Definition: Establishing unique visual approaches for each project.
+
+• Creative Consultation: Expert guidance on visual decision-making.`,
+
+    'Animation': `Dynamic Movement that captures attention. We bring static elements to life through carefully crafted animation.
+
+Character Animation: Creating engaging animated personalities and stories.
+
+• Logo Animation: Adding motion to brand identities.
+
+• UI/UX Animation: Enhancing digital interfaces with smooth transitions.
+
+• Explainer Videos: Making complex information accessible and engaging.
+
+• Social Media Animation: Creating scroll-stopping animated content.`,
+
+    'Strategy': `Strategic Planning that drives results. We develop comprehensive approaches to achieve your business objectives.
+
+Market Analysis: Understanding your competitive landscape and opportunities.
+
+• Target Audience Research: Identifying and understanding your key demographics.
+
+• Campaign Planning: Developing effective multi-channel marketing strategies.
+
+• Performance Metrics: Setting and tracking meaningful KPIs.
+
+• Growth Strategy: Planning for sustainable business expansion.`,
+
+    'Motion Design': `Motion Design Movement brings design to life. We create everything from simple, striking animations to fully developed motion systems and 3D motion.
+
+2D & 3D Animation: From simple logo animations to full-blown animated 2D and 3D videos.
+
+• Motion Graphics: Moving visuals that make information exciting.
+
+• Film & Video Production: High-quality video that tells your story.
+
+• Visual Effects (VFX): The finishing touch that makes your videos pop.
+
+• Social & Digital Content: Quick, engaging, and designed to go viral.`
   };
 
   return (
@@ -146,7 +196,7 @@ export default function About() {
 
           {/* Service Content */}
           <div className="w-full md:w-1/2 pt-8 md:pt-20">
-            <p className="text-lg font-light">
+            <p className="text-lg font-light whitespace-pre-line">
               {serviceContent[selectedService]}
             </p>
           </div>
