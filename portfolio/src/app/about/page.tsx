@@ -46,17 +46,17 @@ export default function About() {
   };
 
   const serviceContent = {
-    'Advertising': `Brand Identity Development that tells your story. We create cohesive and memorable brand experiences that resonate with your audience.
-
-Logo Design & Visual Identity: Crafting distinctive marks and comprehensive visual systems.
-
-• Brand Strategy: Defining your unique position in the market.
-
-• Brand Guidelines: Creating comprehensive rules for consistent brand application.
-
-• Brand Voice & Messaging: Developing your unique tone and communication style.
-
-• Brand Collateral: Designing all touchpoints of your brand experience.`,
+    'Advertising': `We delve deep into the brand to make sure we understand fully what can help it succeed with. We like to be bold, create things that will last and leave a mark.
+    
+    •    Art Direction: We craft cohesive and visually stunning creative concepts that align with your brand’s identity and campaign goals. From concept to execution. 
+    
+    •    Brand Campaigns: Conjuring campaigns best suited for the brand, that will hopefully raise a few eyebrows.
+    
+    •    Integrated Marketing: Seamless campaigns across social, digital, print etc.
+    
+    •    Concept Development: Exiting and bold concept ideas that rhymes well with the brand.
+    
+    •    Copywriting & Messaging: Compose memorable and eyecatching text for your brand.`,
 
     'Brand Design': `Creative Vision that sets the tone. We guide the visual language of your projects from concept to execution.
 
@@ -70,17 +70,13 @@ Creative Concept Development: Transforming ideas into compelling visual narrativ
 
 • Creative Consultation: Expert guidance on visual decision-making.`,
 
-    'Brand Strategy': `Dynamic Movement that captures attention. We bring static elements to life through carefully crafted animation.
+    'Brand Strategy': `We help you find your place in the market, define what makes you different, and work with this to ensure every project gets tailored to its needs. Our philosophy is that there has to be a reason behind every decision. 
 
-Character Animation: Creating engaging animated personalities and stories.
-
-• Logo Animation: Adding motion to brand identities.
-
-• UI/UX Animation: Enhancing digital interfaces with smooth transitions.
-
-• Explainer Videos: Making complex information accessible and engaging.
-
-• Social Media Animation: Creating scroll-stopping animated content.`,
+    •    Brand Positioning: Find the brands unique position on the market.
+    
+    •    Market Research & Insights: Data-driven decisions, not just gut feelings.
+    
+    •    Tone of Voice & Messaging: Finding the right words to express who you are.`,
 
     'Motion Design': `Motion Design Movement brings design to life. We create everything from simple, striking animations to fully developed motion systems and 3D motion.
 
@@ -204,7 +200,7 @@ Character Animation: Creating engaging animated personalities and stories.
                 alt="Love Molin" 
                 className="aspect-square object-cover w-full mb-4"
               />
-              <p>(L)ove Molin</p>
+              <p>(L)ove Molin Lundgren</p>
             </div>
             <div>
               <img 
@@ -212,7 +208,7 @@ Character Animation: Creating engaging animated personalities and stories.
                 alt="Ivar" 
                 className="aspect-square object-cover w-full mb-4"
               />
-              <p>(I)var</p>
+              <p>(I)var Callmander Hjelmström</p>
             </div>
             <div>
               <img 
@@ -220,7 +216,7 @@ Character Animation: Creating engaging animated personalities and stories.
                 alt="Seb" 
                 className="aspect-square object-cover w-full mb-4"
               />
-              <p>(S)eb</p>
+              <p>(S)eb Nilsson Agerlid</p>
             </div>
             <div>
               <img 
@@ -228,7 +224,7 @@ Character Animation: Creating engaging animated personalities and stories.
                 alt="Albert" 
                 className="aspect-square object-cover w-full mb-4"
               />
-              <p>(A)lbert</p>
+              <p>(A)lbert Fromholtz Levin</p>
             </div>
           </div>
         </div>
