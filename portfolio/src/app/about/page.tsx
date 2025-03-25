@@ -58,17 +58,17 @@ export default function About() {
     
     •    Copywriting & Messaging: Compose memorable and eyecatching text for your brand.`,
 
-    'Brand Design': `Creative Vision that sets the tone. We guide the visual language of your projects from concept to execution.
-
-Creative Concept Development: Transforming ideas into compelling visual narratives.
-
-• Visual Storytelling: Crafting cohesive visual experiences across all mediums.
-
-• Project Leadership: Guiding creative teams toward unified goals.
-
-• Style Definition: Establishing unique visual approaches for each project.
-
-• Creative Consultation: Expert guidance on visual decision-making.`,
+    'Brand Design': `We create visuals that tell your story, make an impact, and build brand recognition.
+    
+    •    Logo & Identity Design: Your brand’s face.
+    
+    •    Brand Guidelines: Keeping everything consistent across all platforms.
+    
+    •    Packaging Design: Finding distinct ways to stand out on the shelf.
+    
+    •    Digital & Print: From social media to business cards, we design it all.
+    
+    •    Environmental & Spatial Branding: Making sure your brand looks great in the real world.`,
 
     'Brand Strategy': `We help you find your place in the market, define what makes you different, and work with this to ensure every project gets tailored to its needs. Our philosophy is that there has to be a reason behind every decision. 
 
@@ -240,7 +240,7 @@ Creative Concept Development: Transforming ideas into compelling visual narrativ
             <div className="max-w-[600px] mb-8">
               Founded as a &quot;Praktikbyrå&quot;. In today&apos;s fast-paced and stressful world, finding time for mindfulness and meditation can be challenging. Many individuals struggle with maintaining a consistent meditation practice due to a lack of guidance, personalized approaches, and difficulty tracking progress.
             </div>
-            <h3 className="text-xl mb-8">Our Bitches</h3>
+            <h3 className="text-xl mb-8">Our Clients</h3>
             <p className="text-2xl font-light">
               Berghs SOC / Hyllie Bryggeri / Searchintent / Dubble Deli / Volanders
             </p>
