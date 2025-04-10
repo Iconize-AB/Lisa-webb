@@ -1,10 +1,12 @@
+/** @format */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Neue Haas Display Black';
-  src: url('/NeueHaasDisplayMediu.ttf') format('truetype');
+  font-family: "Neue Haas Display Black";
+  src: url("/NeueHaasDisplayMediu.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

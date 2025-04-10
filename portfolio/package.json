@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "framer-motion": "^12.4.7",
     "gsap": "^3.12.7",
+    "lenis": "^1.2.3",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
