@@ -11,7 +11,7 @@ import { data } from "../../../data";
 import SmoothScroll from "../../hooks/SmoothScroll";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Home() {
+export default function Projects() {
   const container = useRef(null);
   const stickyCards = useRef(null);
   const titleRef = useRef(null);
@@ -167,7 +167,7 @@ export default function Home() {
           ref={stickyCards}
           className="sticky-cards relative w-screen h-screen bg-[#0101010] overflow-hidden flex-col flex items-center justify-center"
         >
-          <div className="text-container fixed top-0 pt-[10vh] flex flex-col items-center justify-center">
+          <div className="text-container text-white fixed top-0 pt-[10vh] flex flex-col items-center justify-center">
             <span
               ref={yearRef}
               className="text-xs font-light leading-none uppercase self-end block opacity-100 transition-opacity duration-300"

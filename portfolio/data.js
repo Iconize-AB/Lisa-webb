@@ -1,131 +1,176 @@
 /** @format */
 
-import img1 from "./assets/berghs.png";
-import img2 from "./assets/demo1.jpg";
-import img3 from "./assets/demo2.jpg";
-import img4 from "./assets/demo3.jpg";
-import img5 from "./assets/demo4.jpg";
-// data has 5 card data but i duplicate that for 4 times to make it 20 cards
-// because we have to add 20 or above cards to get the animation done
+// Import project images
+import berghsImg from "./public/berghs.png";
+import hyllieImg from "./public/Förstabild.png";
+import volandersImg from "./public/Förstabilden.png";
+import dubblaImg from "./public/Förstabild.png";
+import img5 from "./assets/demo4.jpg"; // Keeping one demo image for padding
+
 export const data = [
   {
-    title: "Berghs",
-    cardImg: img1,
-    year: 2024,
-    categories: ["Branding", "Art Direction", "Design", "Animation"],
+    title: "ENTER BERGHS",
+    cardImg: berghsImg,
+    year: "2023-2024",
+    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"],
+    background: "Life rarely follows a straight path. Alike the creative process, it's more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions.",
+    solution: "We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.",
+    images: [
+      "berghs/Enter_berghs_staket.png",
+      "berghs/Monter.png",
+      "berghs/skylt_berghs.png",
+      "berghs/från_till.jpg",
+      "berghs/Berghs_logos.png",
+      "berghs/flagga_berghs.png",
+      "berghs/Berghs_popup_16_9 copy.png",
+      "berghs/Programikoner.gif",
+      "berghs/Berghs.gif",
+    ]
   },
   {
-    title: "Nordic Studio",
-    cardImg: img2,
-    year: 2023,
-    categories: ["Web Design", "Development", "UI/UX"],
+    title: "SKÅNSK LAGER",
+    cardImg: hyllieImg,
+    year: "2024-2025",
+    categories: ["Brand Design", "Brand Strategy"],
+    background: "Hyllie Brewery is one of the largest beer producers within the region of Skåne.",
+    solution: "Drawing inspiration from this vast and beautiful area, we created a rebranding of their bestseller: Hyllie Brewery is one of the largest beer producers within the region of Skåne.",
+    images: [
+      "hyllie/Förstabild.png",
+      "hyllie/Flak.png",
+      "hyllie/Fält.png",
+      "hyllie/ölglas_färgpalett.png",
+      "hyllie/burk_vetestrå.png",
+    ]
   },
   {
-    title: "Motion Lab",
-    cardImg: img3,
-    year: 2022,
-    categories: ["Animation", "3D", "Creative Direction"],
+    title: "VOLANDERS",
+    cardImg: volandersImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"],
+    background: "Volanders is a newly opened eventspace in the old slaughterhouse quarter of Stockholm, how can we infuse the history of the industrial building into the new identity?",
+    solution: "Historical Parties. Mixing the old with the new!",
+    images: [
+      "volanders/Förstabilden.png",
+      "volanders/DÅ_NU.png",
+      "volanders/färgpalett.png",
+      "volanders/Bildspel_Logotyp.gif",
+      "volanders/OOH.png",
+    ]
   },
   {
-    title: "Mono Brand",
-    cardImg: img4,
-    year: 2024,
-    categories: ["Branding", "Packaging", "Print"],
+    title: "DUBBLA DELI",
+    cardImg: dubblaImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Advertising"],
+    background: "Dubbla, Stockholms latest & greatest sandwich restaurant, needed to get the word out about their new spot in Hötorgshallen.",
+    solution: "With a smaller budget, we created low-cost communication, using take-away bags, loyalty cards & t-shirts as brand megaphones, in true deli fashion.",
+    images: [
+      "dubbla_deli/dubbla_staket.png",
+      "dubbla_deli/Krökarkortet.png",
+      "dubbla_deli/Påse.png",
+      "dubbla_deli/Översikt.png",
+      "dubbla_deli/mobil.png",
+    ]
+  },
+  // Repeat the real projects 4 more times to reach 20 cards
+  // Second set
+  {
+    title: "ENTER BERGHS",
+    cardImg: berghsImg,
+    year: "2023-2024",
+    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
   },
   {
-    title: "Pixel Shift",
-    cardImg: img5,
-    year: 2021,
-    categories: ["Design", "Development", "Strategy"],
+    title: "SKÅNSK LAGER",
+    cardImg: hyllieImg,
+    year: "2024-2025",
+    categories: ["Brand Design", "Brand Strategy"]
   },
   {
-    title: "Berghs",
-    cardImg: img1,
-    year: 2024,
-    categories: ["Branding", "Art Direction", "Design", "Animation"],
+    title: "VOLANDERS",
+    cardImg: volandersImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
   },
   {
-    title: "Nordic Studio",
-    cardImg: img2,
-    year: 2023,
-    categories: ["Web Design", "Development", "UI/UX"],
+    title: "DUBBLA DELI",
+    cardImg: dubblaImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Advertising"]
+  },
+  // Third set
+  {
+    title: "ENTER BERGHS",
+    cardImg: berghsImg,
+    year: "2023-2024",
+    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
   },
   {
-    title: "Motion Lab",
-    cardImg: img3,
-    year: 2022,
-    categories: ["Animation", "3D", "Creative Direction"],
+    title: "SKÅNSK LAGER",
+    cardImg: hyllieImg,
+    year: "2024-2025",
+    categories: ["Brand Design", "Brand Strategy"]
   },
   {
-    title: "Mono Brand",
-    cardImg: img4,
-    year: 2024,
-    categories: ["Branding", "Packaging", "Print"],
+    title: "VOLANDERS",
+    cardImg: volandersImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
   },
   {
-    title: "Pixel Shift",
-    cardImg: img5,
-    year: 2021,
-    categories: ["Design", "Development", "Strategy"],
+    title: "DUBBLA DELI",
+    cardImg: dubblaImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Advertising"]
+  },
+  // Fourth set
+  {
+    title: "ENTER BERGHS",
+    cardImg: berghsImg,
+    year: "2023-2024",
+    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
   },
   {
-    title: "Berghs",
-    cardImg: img1,
-    year: 2024,
-    categories: ["Branding", "Art Direction", "Design", "Animation"],
+    title: "SKÅNSK LAGER",
+    cardImg: hyllieImg,
+    year: "2024-2025",
+    categories: ["Brand Design", "Brand Strategy"]
   },
   {
-    title: "Nordic Studio",
-    cardImg: img2,
-    year: 2023,
-    categories: ["Web Design", "Development", "UI/UX"],
+    title: "VOLANDERS",
+    cardImg: volandersImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
   },
   {
-    title: "Motion Lab",
-    cardImg: img3,
-    year: 2022,
-    categories: ["Animation", "3D", "Creative Direction"],
+    title: "DUBBLA DELI",
+    cardImg: dubblaImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Advertising"]
+  },
+  // Fifth set (partial, to reach 20)
+  {
+    title: "ENTER BERGHS",
+    cardImg: berghsImg,
+    year: "2023-2024",
+    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
   },
   {
-    title: "Mono Brand",
-    cardImg: img4,
-    year: 2024,
-    categories: ["Branding", "Packaging", "Print"],
+    title: "SKÅNSK LAGER",
+    cardImg: hyllieImg,
+    year: "2024-2025",
+    categories: ["Brand Design", "Brand Strategy"]
   },
   {
-    title: "Pixel Shift",
-    cardImg: img5,
-    year: 2021,
-    categories: ["Design", "Development", "Strategy"],
+    title: "VOLANDERS",
+    cardImg: volandersImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
   },
   {
-    title: "Berghs",
-    cardImg: img1,
-    year: 2024,
-    categories: ["Branding", "Art Direction", "Design", "Animation"],
-  },
-  {
-    title: "Nordic Studio",
-    cardImg: img2,
-    year: 2023,
-    categories: ["Web Design", "Development", "UI/UX"],
-  },
-  {
-    title: "Motion Lab",
-    cardImg: img3,
-    year: 2022,
-    categories: ["Animation", "3D", "Creative Direction"],
-  },
-  {
-    title: "Mono Brand",
-    cardImg: img4,
-    year: 2024,
-    categories: ["Branding", "Packaging", "Print"],
-  },
-  {
-    title: "Pixel Shift",
-    cardImg: img5,
-    year: 2021,
-    categories: ["Design", "Development", "Strategy"],
-  },
+    title: "DUBBLA DELI",
+    cardImg: dubblaImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Advertising"]
+  }
 ];

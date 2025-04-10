@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Header from "./Header";
-import StackingCards from "../components/StackingCards";
 import styled from 'styled-components';
 import Image from 'next/image';
+import Projects from './projects/page';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +35,7 @@ export default function Home() {
       <div style={{ visibility: isLoading ? 'hidden' : 'visible' }}>
         <Header/>
         <main className="min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden max-w-screen">
-          <StackingCards />
+          <Projects />
         </main>
       </div>
     </>
