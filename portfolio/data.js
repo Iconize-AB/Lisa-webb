@@ -8,13 +8,77 @@ import dubblaImg from "./public/Förstabild.png";
 import img5 from "./assets/demo4.jpg"; // Keeping one demo image for padding
 
 export const data = [
+  //place 5th here in future
+
+  {
+    title: "DUBBLA DELI",
+    cardImg: dubblaImg,
+    year: "2024-2025",
+    categories: ["Brand Strategy", "Advertising"],
+    background:
+      "Dubbla, Stockholms latest & greatest sandwich restaurant, needed to get the word out about their new spot in Hötorgshallen.",
+    solution:
+      "With a smaller budget, we created low-cost communication, using take-away bags, loyalty cards & t-shirts as brand megaphones, in true deli fashion.",
+    images: [
+      "dubbla_deli/dubbla_staket.png",
+      "dubbla_deli/Krökarkortet.png",
+      "dubbla_deli/Påse.png",
+      "dubbla_deli/Översikt.png",
+      "dubbla_deli/mobil.png",
+    ],
+  },
+  {
+    title: "VOLANDERS",
+    cardImg: volandersImg,
+    year: "2024-2025",
+    categories: [
+      "Brand Strategy",
+      "Brand Design",
+      "Motion Design",
+      "Advertising",
+    ],
+    background:
+      "Volanders is a newly opened eventspace in the old slaughterhouse quarter of Stockholm, how can we infuse the history of the industrial building into the new identity?",
+    solution: "Historical Parties. Mixing the old with the new!",
+    images: [
+      "volanders/Förstabilden.png",
+      "volanders/DÅ_NU.png",
+      "volanders/färgpalett.png",
+      "volanders/Bildspel_Logotyp.gif",
+      "volanders/OOH.png",
+    ],
+  },
+  {
+    title: "SKÅNSK LAGER",
+    cardImg: hyllieImg,
+    year: "2024-2025",
+    categories: ["Brand Design", "Brand Strategy"],
+    background:
+      "Hyllie Brewery is one of the largest beer producers within the region of Skåne.",
+    solution:
+      "Drawing inspiration from this vast and beautiful area, we created a rebranding of their bestseller: Hyllie Brewery is one of the largest beer producers within the region of Skåne.",
+    images: [
+      "hyllie/Förstabild.png",
+      "hyllie/Flak.png",
+      "hyllie/Fält.png",
+      "hyllie/ölglas_färgpalett.png",
+      "hyllie/burk_vetestrå.png",
+    ],
+  },
   {
     title: "ENTER BERGHS",
     cardImg: berghsImg,
     year: "2023-2024",
-    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"],
-    background: "Life rarely follows a straight path. Alike the creative process, it's more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions.",
-    solution: "We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.",
+    categories: [
+      "Brand Strategy",
+      "Brand Design",
+      "Motion Design",
+      "Advertising",
+    ],
+    background:
+      "Life rarely follows a straight path. Alike the creative process, it's more often filled with twists and turns. Berghs has, since its start in 1941, helped students turn detours into opportunities, problems into solutions.",
+    solution:
+      "We developed an innovative digital platform that combines modern technology with traditional mindfulness practices, making meditation more accessible and engaging for todays users.",
     images: [
       "berghs/Enter_berghs_staket.png",
       "berghs/Monter.png",
@@ -25,29 +89,38 @@ export const data = [
       "berghs/Berghs_popup_16_9 copy.png",
       "berghs/Programikoner.gif",
       "berghs/Berghs.gif",
-    ]
+    ],
   },
+  //place 5th here in future
   {
-    title: "SKÅNSK LAGER",
-    cardImg: hyllieImg,
+    title: "DUBBLA DELI",
+    cardImg: dubblaImg,
     year: "2024-2025",
-    categories: ["Brand Design", "Brand Strategy"],
-    background: "Hyllie Brewery is one of the largest beer producers within the region of Skåne.",
-    solution: "Drawing inspiration from this vast and beautiful area, we created a rebranding of their bestseller: Hyllie Brewery is one of the largest beer producers within the region of Skåne.",
+    categories: ["Brand Strategy", "Advertising"],
+    background:
+      "Dubbla, Stockholms latest & greatest sandwich restaurant, needed to get the word out about their new spot in Hötorgshallen.",
+    solution:
+      "With a smaller budget, we created low-cost communication, using take-away bags, loyalty cards & t-shirts as brand megaphones, in true deli fashion.",
     images: [
-      "hyllie/Förstabild.png",
-      "hyllie/Flak.png",
-      "hyllie/Fält.png",
-      "hyllie/ölglas_färgpalett.png",
-      "hyllie/burk_vetestrå.png",
-    ]
+      "dubbla_deli/dubbla_staket.png",
+      "dubbla_deli/Krökarkortet.png",
+      "dubbla_deli/Påse.png",
+      "dubbla_deli/Översikt.png",
+      "dubbla_deli/mobil.png",
+    ],
   },
   {
     title: "VOLANDERS",
     cardImg: volandersImg,
     year: "2024-2025",
-    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"],
-    background: "Volanders is a newly opened eventspace in the old slaughterhouse quarter of Stockholm, how can we infuse the history of the industrial building into the new identity?",
+    categories: [
+      "Brand Strategy",
+      "Brand Design",
+      "Motion Design",
+      "Advertising",
+    ],
+    background:
+      "Volanders is a newly opened eventspace in the old slaughterhouse quarter of Stockholm, how can we infuse the history of the industrial building into the new identity?",
     solution: "Historical Parties. Mixing the old with the new!",
     images: [
       "volanders/Förstabilden.png",
@@ -55,122 +128,23 @@ export const data = [
       "volanders/färgpalett.png",
       "volanders/Bildspel_Logotyp.gif",
       "volanders/OOH.png",
-    ]
+    ],
   },
   {
-    title: "DUBBLA DELI",
-    cardImg: dubblaImg,
+    title: "SKÅNSK LAGER",
+    cardImg: hyllieImg,
     year: "2024-2025",
-    categories: ["Brand Strategy", "Advertising"],
-    background: "Dubbla, Stockholms latest & greatest sandwich restaurant, needed to get the word out about their new spot in Hötorgshallen.",
-    solution: "With a smaller budget, we created low-cost communication, using take-away bags, loyalty cards & t-shirts as brand megaphones, in true deli fashion.",
+    categories: ["Brand Design", "Brand Strategy"],
+    background:
+      "Hyllie Brewery is one of the largest beer producers within the region of Skåne.",
+    solution:
+      "Drawing inspiration from this vast and beautiful area, we created a rebranding of their bestseller: Hyllie Brewery is one of the largest beer producers within the region of Skåne.",
     images: [
-      "dubbla_deli/dubbla_staket.png",
-      "dubbla_deli/Krökarkortet.png",
-      "dubbla_deli/Påse.png",
-      "dubbla_deli/Översikt.png",
-      "dubbla_deli/mobil.png",
-    ]
+      "hyllie/Förstabild.png",
+      "hyllie/Flak.png",
+      "hyllie/Fält.png",
+      "hyllie/ölglas_färgpalett.png",
+      "hyllie/burk_vetestrå.png",
+    ],
   },
-  // Repeat the real projects 4 more times to reach 20 cards
-  // Second set
-  {
-    title: "ENTER BERGHS",
-    cardImg: berghsImg,
-    year: "2023-2024",
-    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
-  },
-  {
-    title: "SKÅNSK LAGER",
-    cardImg: hyllieImg,
-    year: "2024-2025",
-    categories: ["Brand Design", "Brand Strategy"]
-  },
-  {
-    title: "VOLANDERS",
-    cardImg: volandersImg,
-    year: "2024-2025",
-    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
-  },
-  {
-    title: "DUBBLA DELI",
-    cardImg: dubblaImg,
-    year: "2024-2025",
-    categories: ["Brand Strategy", "Advertising"]
-  },
-  // Third set
-  {
-    title: "ENTER BERGHS",
-    cardImg: berghsImg,
-    year: "2023-2024",
-    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
-  },
-  {
-    title: "SKÅNSK LAGER",
-    cardImg: hyllieImg,
-    year: "2024-2025",
-    categories: ["Brand Design", "Brand Strategy"]
-  },
-  {
-    title: "VOLANDERS",
-    cardImg: volandersImg,
-    year: "2024-2025",
-    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
-  },
-  {
-    title: "DUBBLA DELI",
-    cardImg: dubblaImg,
-    year: "2024-2025",
-    categories: ["Brand Strategy", "Advertising"]
-  },
-  // Fourth set
-  {
-    title: "ENTER BERGHS",
-    cardImg: berghsImg,
-    year: "2023-2024",
-    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
-  },
-  {
-    title: "SKÅNSK LAGER",
-    cardImg: hyllieImg,
-    year: "2024-2025",
-    categories: ["Brand Design", "Brand Strategy"]
-  },
-  {
-    title: "VOLANDERS",
-    cardImg: volandersImg,
-    year: "2024-2025",
-    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
-  },
-  {
-    title: "DUBBLA DELI",
-    cardImg: dubblaImg,
-    year: "2024-2025",
-    categories: ["Brand Strategy", "Advertising"]
-  },
-  // Fifth set (partial, to reach 20)
-  {
-    title: "ENTER BERGHS",
-    cardImg: berghsImg,
-    year: "2023-2024",
-    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
-  },
-  {
-    title: "SKÅNSK LAGER",
-    cardImg: hyllieImg,
-    year: "2024-2025",
-    categories: ["Brand Design", "Brand Strategy"]
-  },
-  {
-    title: "VOLANDERS",
-    cardImg: volandersImg,
-    year: "2024-2025",
-    categories: ["Brand Strategy", "Brand Design", "Motion Design", "Advertising"]
-  },
-  {
-    title: "DUBBLA DELI",
-    cardImg: dubblaImg,
-    year: "2024-2025",
-    categories: ["Brand Strategy", "Advertising"]
-  }
 ];

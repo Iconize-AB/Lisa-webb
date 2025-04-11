@@ -20,8 +20,8 @@ export default function Projects() {
   const currentIndex = useRef(0);
   useGSAP(
     () => {
-      const cardsPerView = 10;
-      const lovedNumberforCards = 20;
+      const cardsPerView = 4;
+      const lovedNumberforCards = 16;
       const getCardProps = (index) => ({
         scale: 0.5 + (index / (lovedNumberforCards - 1)) * 0.5,
         yPercent: (index / (lovedNumberforCards - 1)) * 100,
@@ -60,7 +60,7 @@ export default function Projects() {
         scrollTrigger: {
           trigger: ".sticky-cards",
           start: "top top",
-          end: `+=${window.innerHeight * (totalCards - 1) * 0.5}`,
+          end: `+=${window.innerHeight * (totalCards - 1) * 0.2}`,
           pin: true,
           scrub: 0.5,
           onUpdate: (self) => {
@@ -162,7 +162,7 @@ export default function Projects() {
 
   return (
     <SmoothScroll>
-      <div ref={container} className="container">
+      <div ref={container} className="w-screen relative">
         <div
           ref={stickyCards}
           className="sticky-cards relative w-screen h-screen bg-[#0101010] overflow-hidden flex-col flex items-center justify-center"
@@ -172,19 +172,19 @@ export default function Projects() {
               ref={yearRef}
               className="text-xs font-light leading-none uppercase self-end block opacity-100 transition-opacity duration-300"
             >
-              {data[9].year}
+              {data[3]?.year}
             </span>
             <h1
               ref={titleRef}
               className="text-8xl font-bold leading-none uppercase block opacity-100 transition-opacity duration-300"
             >
-              {data[9].title}
+              {data[3]?.title}
             </h1>
             <div
               ref={categoriesRef}
               className="flex items-center justify-between w-full gap-2 flex-wrap opacity-100 transition-opacity duration-300"
             >
-              {data[9].categories.map((category, index) => (
+              {data[3]?.categories.map((category, index) => (
                 <span
                   key={index}
                   className="text-xs font-light leading-none uppercase"
