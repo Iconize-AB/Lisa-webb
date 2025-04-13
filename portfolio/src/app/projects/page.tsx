@@ -18,6 +18,9 @@ export default function Projects() {
   const yearRef = useRef(null);
   const categoriesRef = useRef(null);
   const currentIndex = useRef(0);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const lenisRef = useRef(null);
+
   useGSAP(
     () => {
       const cardsPerView = 4;
@@ -160,14 +163,30 @@ export default function Projects() {
     });
   };
 
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+    // Stop Lenis scrolling when overlay opens
+    if (window.lenis) {
+      window.lenis.stop();
+    }
+  };
+
+  const handleCloseProject = () => {
+    // Resume Lenis scrolling when overlay closes
+    if (window.lenis) {
+      window.lenis.start();
+    }
+    setSelectedProject(null);
+  };
+
   return (
     <SmoothScroll>
       <div ref={container} className="w-screen relative">
         <div
           ref={stickyCards}
-          className="sticky-cards relative w-screen h-screen bg-[#0101010] overflow-hidden flex-col flex items-center justify-center"
+          className="sticky-cards relative w-screen h-screen bg-[#0101010] flex-col flex items-center justify-center"
         >
-          <div className="text-container text-white fixed top-0 pt-[10vh] flex flex-col items-center justify-center">
+          <div className="text-container text-white fixed top-0 pt-[14vh] flex flex-col items-center justify-center">
             <span
               ref={yearRef}
               className="text-xs font-light leading-none uppercase self-end block opacity-100 transition-opacity duration-300"
@@ -199,17 +218,99 @@ export default function Projects() {
             {data.map((data, index) => (
               <div
                 key={index}
-                className="card absolute w-full h-full rounded-3xl overflow-hidden"
+                className="card absolute w-full h-full rounded-3xl"
+                onClick={() => handleProjectClick(data)}
               >
                 <Image
-                  className="img w-full h-full relative object-cover object-center"
+                  className="img w-full h-full relative rounded-3xl object-cover object-center"
                   src={data.cardImg}
-                  alt=""
+                  alt={data.title}
+                  width={1000}
+                  height={1000}
                 />
               </div>
             ))}
           </div>
         </div>
+
+        {/* Add Project Overlay */}
+        {selectedProject && (
+          <div 
+            className="fixed inset-0 z-[1000] bg-white"
+            style={{
+              height: '100vh',
+              overflowY: 'scroll',
+              overflowX: 'hidden',
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              WebkitOverflowScrolling: 'touch',
+              msOverflowStyle: '-ms-autohiding-scrollbar',
+            }}
+          >
+            <div className="absolute w-full">
+              <button 
+                onClick={handleCloseProject}
+                className="fixed top-5 right-5 text-3xl z-[1001] cursor-pointer text-black hover:opacity-70"
+              >
+                ×
+              </button>
+              
+              {/* Hero Image */}
+              <div className="w-full h-screen">
+                <Image
+                  src={selectedProject.cardImg}
+                  alt={selectedProject.title}
+                  width={1000}
+                  height={1000}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+
+              {/* Project Info */}
+              <div className="w-full">
+                <div className="grid grid-cols-2 gap-8 p-16">
+                  <div>
+                    <h1 className="text-4xl font-bold mb-4">{selectedProject.title}</h1>
+                    <div className="flex flex-col gap-2">
+                      {selectedProject.categories?.map((category, idx) => (
+                        <span key={idx} className="text-sm uppercase">{category}</span>
+                      ))}
+                    </div>
+                    <div className="mt-4">{selectedProject.date}</div>
+                  </div>
+                  <div>
+                    <div className="mb-16">
+                      <div className="text-sm uppercase mb-4">BACKGROUND</div>
+                      <div className="text-2xl">{selectedProject.background}</div>
+                    </div>
+                    <div>
+                      <div className="text-sm uppercase mb-4">SOLUTION</div>
+                      <div className="text-2xl">{selectedProject.solution}</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Project Gallery */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-16">
+                  {selectedProject.images?.map((image, idx) => (
+                    <Image
+                      key={idx}
+                      src={image}
+                      alt={`Project detail ${idx + 1}`}
+                      className="w-full object-cover"
+                      width={1000}
+                      height={1000}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </SmoothScroll>
   );
