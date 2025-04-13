@@ -7,13 +7,6 @@ import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
-// Add type declaration for window
-declare global {
-  interface Window {
-    lenis: Lenis;
-  }
-}
-
 gsap.registerPlugin(ScrollTrigger);
 
 interface SmoothScrollProps {
@@ -36,9 +29,6 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
-    // Make lenis instance globally available
-    window.lenis = lenis;
-
     lenis.scrollTo(0, { immediate: true });
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -52,10 +42,8 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
 
     // console.log(loading);
 
-    return () => {
-      lenis.destroy();
-      window.lenis = undefined;
-    };
+    // Optional cleanup on unmount
+    // return () => lenis.destroy();
   }, []);
 
   return <div>{children}</div>;

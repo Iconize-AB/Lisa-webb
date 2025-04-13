@@ -165,14 +165,12 @@ export default function Projects() {
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
-    // Stop Lenis scrolling when overlay opens
     if (window.lenis) {
-      window.lenis.stop();
+      window.lenis.destroy();
     }
   };
 
   const handleCloseProject = () => {
-    // Resume Lenis scrolling when overlay closes
     if (window.lenis) {
       window.lenis.start();
     }
@@ -248,6 +246,18 @@ export default function Projects() {
               bottom: 0,
               WebkitOverflowScrolling: 'touch',
               msOverflowStyle: '-ms-autohiding-scrollbar',
+            }}
+            onClick={(e) => {
+              // Prevent click propagation
+              e.stopPropagation();
+            }}
+            onWheel={(e) => {
+              // Ensure wheel events are handled by the overlay
+              e.stopPropagation();
+            }}
+            onTouchMove={(e) => {
+              // Ensure touch events are handled by the overlay
+              e.stopPropagation();
             }}
           >
             <div className="absolute w-full">
