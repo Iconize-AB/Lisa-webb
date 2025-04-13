@@ -5,7 +5,6 @@ import berghsImg from "./public/berghs.png";
 import hyllieImg from "./public/Förstabild.png";
 import volandersImg from "./public/Förstabilden.png";
 import dubblaImg from "./public/Förstabilden_dubbla.png";
-import img5 from "./assets/demo4.jpg"; // Keeping one demo image for padding
 
 export const data = [
   //place 5th here in future
