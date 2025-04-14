@@ -34,7 +34,7 @@ export default function Home() {
       ) : null}
       <div style={{ visibility: isLoading ? 'hidden' : 'visible' }}>
         <Header/>
-        <main className="min-h-screen flex flex-col items-center justify-center bg-black max-w-screen">
+        <main className="min-h-screen flex flex-col items-center justify-center bg-white max-w-screen">
           <Projects />
         </main>
       </div>

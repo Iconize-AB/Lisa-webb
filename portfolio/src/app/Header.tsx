@@ -20,26 +20,16 @@ export default function Header() {
 
   return (
     <header className={`fixed w-full top-0 z-50 backdrop-blur-sm transition-all duration-300 ${
-      isScrolled ? 'bg-white' : 'bg-black'
+      pathname === '/about' ? 'bg-black' : 'bg-white'
     }`}>
-      <div className="max-w-[1400px] mx-auto px-8 py-6 flex justify-between items-center">
-        <Link href="/" className="hover:opacity-80 transition-opacity">
-          <Image
-            src={isScrolled ? "/LISA_logotype.png" : "/LISA_logotype.png"}
-            alt="LISA STUDIOS"
-            width={100}
-            height={30}
-            priority
-          />
-        </Link>
-        
+      <div className="max-w-[1400px] mx-auto px-8 py-6 flex justify-center items-center">
         <nav>
           <ul className="flex gap-8">
             <li>
               <Link 
                 href="/" 
                 className={`hover:opacity-80 transition-opacity font-['Neue_Haas_Display_Black'] ${
-                  isScrolled ? 'text-black' : 'text-white'
+                  pathname === '/about' ? 'text-white' : 'text-black'
                 } ${pathname === '/' ? 'opacity-100' : 'opacity-50'}`}
               >
                 HOME
@@ -49,7 +39,7 @@ export default function Header() {
               <Link 
                 href="/about" 
                 className={`hover:opacity-80 transition-opacity font-['Neue_Haas_Display_Black'] ${
-                  isScrolled ? 'text-black' : 'text-white'
+                  pathname === '/about' ? 'text-white' : 'text-black'
                 } ${pathname === '/about' ? 'opacity-100' : 'opacity-50'}`}
               >
                 ABOUT

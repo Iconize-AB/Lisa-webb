@@ -177,6 +177,24 @@ export default function Projects() {
     setSelectedProject(null);
   };
 
+  const handleNextProject = () => {
+    const currentIndex = data.findIndex(p => p === selectedProject);
+    const nextIndex = (currentIndex + 1) % data.length;
+    const nextProject = data[nextIndex];
+
+    // First scroll the overlay to top
+    const projectOverlay = document.querySelector('.fixed.inset-0');
+    if (projectOverlay) {
+      projectOverlay.scrollTo({
+        top: 0,
+        behavior: 'instant'
+      });
+    }
+
+    // Then update the selected project
+    setSelectedProject(nextProject);
+  };
+
   return (
     <SmoothScroll>
       <div ref={container} className="w-screen relative">
@@ -184,7 +202,7 @@ export default function Projects() {
           ref={stickyCards}
           className="sticky-cards relative w-screen h-screen bg-[#0101010] flex-col flex items-center justify-center"
         >
-          <div className="text-container text-white fixed top-0 pt-[14vh] flex flex-col items-center justify-center">
+          <div className="text-container text-black fixed top-0 pt-[14vh] flex flex-col items-center justify-center">
             <span
               ref={yearRef}
               className="text-xs font-light leading-none uppercase self-end block opacity-100 transition-opacity duration-300"
@@ -248,22 +266,19 @@ export default function Projects() {
               msOverflowStyle: '-ms-autohiding-scrollbar',
             }}
             onClick={(e) => {
-              // Prevent click propagation
               e.stopPropagation();
             }}
             onWheel={(e) => {
-              // Ensure wheel events are handled by the overlay
               e.stopPropagation();
             }}
             onTouchMove={(e) => {
-              // Ensure touch events are handled by the overlay
               e.stopPropagation();
             }}
           >
             <div className="absolute w-full">
               <button 
                 onClick={handleCloseProject}
-                className="fixed top-5 right-5 text-3xl z-[1001] cursor-pointer text-black hover:opacity-70"
+                className="fixed top-5 right-5 text-3xl z-[1001] cursor-pointer text-white hover:opacity-70"
               >
                 ×
               </button>
@@ -317,6 +332,21 @@ export default function Projects() {
                     />
                   ))}
                 </div>
+              </div>
+
+              {/* Add Next Project Button Container */}
+              <div className="px-20 py-16 text-right w-full">
+                <button 
+                  onClick={handleNextProject}
+                  className="relative px-12 py-6 text-xl bg-transparent text-black border-none cursor-pointer font-['Neue_Haas_Display'] transition-all duration-300 hover:tracking-wider group"
+                >
+                  Next Project
+                  <span className="relative top-0.5 ml-3 text-2xl inline-block transition-transform duration-300 group-hover:translate-x-2">
+                    →
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-full h-px bg-black origin-right scale-x-0 transition-transform duration-600 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:origin-left group-hover:scale-x-100">
+                  </span>
+                </button>
               </div>
             </div>
           </div>
