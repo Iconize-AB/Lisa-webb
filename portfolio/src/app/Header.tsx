@@ -32,7 +32,7 @@ export default function Header() {
                   pathname === '/about' ? 'text-white' : 'text-black'
                 } ${pathname === '/' ? 'opacity-100' : 'opacity-50'}`}
               >
-                HOME
+                WORK
               </Link>
             </li>
             <li>
