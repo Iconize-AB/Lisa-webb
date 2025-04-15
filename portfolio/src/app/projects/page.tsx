@@ -9,6 +9,14 @@ import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import { data } from "../../../data";
 import SmoothScroll from "../../hooks/SmoothScroll";
+import Lenis from '@studio-freight/lenis'
+
+declare global {
+  interface Window {
+    lenis?: Lenis;
+  }
+}
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Projects() {
