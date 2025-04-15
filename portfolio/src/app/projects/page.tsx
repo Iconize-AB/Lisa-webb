@@ -25,10 +25,11 @@ export default function Projects() {
     () => {
       const cardsPerView = 4;
       const lovedNumberforCards = 16;
-      const getCardProps = (index) => ({
-        scale: 0.5 + (index / (lovedNumberforCards - 1)) * 0.5,
-        yPercent: (index / (lovedNumberforCards - 1)) * 100,
-      });
+      const getCardProps = {
+        scale: (index: number) => 0.5 + (index / (lovedNumberforCards - 1)) * 0.5,
+        yPercent: (index: number) => (index / (lovedNumberforCards - 1)) * 100,
+      };
+
       const cards = document.querySelectorAll(".card");
       const images = document.querySelectorAll(".card .img");
       const totalCards = cards.length;
@@ -44,11 +45,12 @@ export default function Projects() {
       });
 
       for (let i = 1; i < totalCards; i++) {
-        const { scale, yPercent } = getCardProps(i);
+        const scale = getCardProps.scale(i);
+        const yPercent = getCardProps.yPercent(i);
 
         gsap.set(cards[i], {
-          yPercent: yPercent,
-          scale: scale,
+          yPercent,
+          scale,
           opacity: 1,
         });
 
@@ -100,12 +102,12 @@ export default function Projects() {
           const card = cards[j];
           if (!card) continue;
 
-          const { scale, yPercent } = getCardProps(shiftedIndex);
+          const { scale, yPercent } = getCardProps;
           scrollTimeline.to(
             card,
             {
-              yPercent,
-              scale,
+              yPercent: yPercent(shiftedIndex),
+              scale: scale(shiftedIndex),
               opacity: 1,
               duration: 1,
               ease: "none",
