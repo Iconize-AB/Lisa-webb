@@ -220,7 +220,7 @@ export default function Projects() {
           ref={stickyCards}
           className="sticky-cards relative w-screen h-screen bg-[#0101010] flex-col flex items-center justify-center"
         >
-          <div className="text-container text-black fixed top-0 pt-[14vh] flex flex-col items-center justify-center">
+          <div className="text-container text-black fixed top-0 pt-[14vh] flex flex-col items-center justify-center w-full px-4 md:px-0">
             <span
               ref={yearRef}
               className="text-xs font-light leading-none uppercase self-end block opacity-100 transition-opacity duration-300"
@@ -229,18 +229,18 @@ export default function Projects() {
             </span>
             <h1
               ref={titleRef}
-              className="text-8xl font-bold leading-none uppercase block opacity-100 transition-opacity duration-300"
+              className="text-3xl md:text-6xl lg:text-8xl font-bold leading-none uppercase block opacity-100 transition-opacity duration-300 text-center"
             >
               {data[3]?.title}
             </h1>
             <div
               ref={categoriesRef}
-              className="flex items-center justify-between w-full gap-2 flex-wrap opacity-100 transition-opacity duration-300"
+              className="flex items-center justify-center md:justify-between w-full max-w-xl gap-2 flex-wrap opacity-100 transition-opacity duration-300"
             >
               {data[3]?.categories.map((category, index) => (
                 <span
                   key={index}
-                  className="text-xs font-light leading-none uppercase"
+                  className="text-[10px] md:text-xs font-light leading-none uppercase"
                 >
                   {category}
                 </span>
