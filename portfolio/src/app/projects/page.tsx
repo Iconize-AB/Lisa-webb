@@ -167,9 +167,15 @@ export default function Projects() {
       },
     });
 
-    tl.to([titleRef.current, yearRef.current, categoriesRef.current], {
+    // Separate animations for title vs year/categories
+    tl.to(titleRef.current, {
       opacity: 1,
       duration: 0.2,
+    })
+    .to([yearRef.current, categoriesRef.current], {
+      opacity: 1,
+      duration: 0.2,
+      delay: 1 // 1 second delay for year and categories
     });
   };
 
@@ -204,6 +210,8 @@ export default function Projects() {
     // Then update the selected project
     setSelectedProject(nextProject);
   };
+
+  console.log("selectedProject", selectedProject);
 
   return (
     <SmoothScroll>
@@ -311,11 +319,11 @@ export default function Projects() {
                   <div>
                     <h1 className="text-4xl font-bold mb-4">{selectedProject.title}</h1>
                     <div className="flex flex-col gap-2">
-                      {selectedProject.categories?.map((category, idx) => (
+                    {selectedProject.categories?.map((category, idx) => (
                         <span key={idx} className="text-sm uppercase">{category}</span>
                       ))}
                     </div>
-                    <div className="mt-4">{selectedProject.date}</div>
+                    <div className="mt-4">{selectedProject.year}</div>
                   </div>
                   <div>
                     <div className="mb-16">
@@ -336,7 +344,7 @@ export default function Projects() {
                       key={idx}
                       src={image}
                       alt={`Project detail ${idx + 1}`}
-                      className="w-full object-cover"
+                      className={`w-full object-cover ${idx === 0 ? 'col-span-2' : ''}`}
                       width={1000}
                       height={1000}
                     />
