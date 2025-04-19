@@ -33,8 +33,15 @@ export default function Projects() {
     () => {
       const cardsPerView = 4;
       const lovedNumberforCards = 16;
+      const isMobile = window.innerWidth < 768;
       const getCardProps = {
-        scale: (index: number) => 0.5 + (index / (lovedNumberforCards - 1)) * 0.5,
+        scale: (index: number) => {
+          const baseScale = 0.5 + (index / (lovedNumberforCards - 1)) * 0.5;
+          if (isMobile) {
+            return [baseScale + 0.3, baseScale]; // [width, height]
+          }
+          return baseScale; // Same scale for both dimensions on desktop
+        },
         yPercent: (index: number) => (index / (lovedNumberforCards - 1)) * 100,
       };
 
@@ -58,7 +65,9 @@ export default function Projects() {
 
         gsap.set(cards[i], {
           yPercent,
-          scale,
+          scale: scale,
+          scaleX: Array.isArray(scale) ? scale[0] : scale, // Apply width scale
+          scaleY: Array.isArray(scale) ? scale[1] : scale, // Apply height scale
           opacity: 1,
         });
 
@@ -220,7 +229,7 @@ export default function Projects() {
           ref={stickyCards}
           className="sticky-cards relative w-screen h-screen bg-[#0101010] flex-col flex items-center justify-center"
         >
-          <div className="text-container text-black fixed top-0 pt-[14vh] flex flex-col items-center justify-center w-full px-4 md:px-0">
+          <div className="text-container text-black fixed top-0 pt-[14vh] flex flex-col items-center justify-center px-4 md:px-0">
             <span
               ref={yearRef}
               className="text-xs font-light leading-none uppercase self-end block opacity-100 transition-opacity duration-300"
@@ -248,7 +257,7 @@ export default function Projects() {
             </div>
           </div>
 
-          <div className="cards-container relative w-[100vw] pt-[10vh] h-[100vh] rounded-3xl">
+          <div className="cards-container relative w-[100vw] pt-[16vh] sm:pt-[10vh] h-[100vh] rounded-3xl">
             {data.map((data, index) => (
               <div
                 key={index}
