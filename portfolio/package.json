@@ -17,6 +17,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-responsive": "^10.0.1",
     "sass": "^1.85.0",
     "styled-components": "^6.1.15",
     "tailwind-scrollbar-hide": "^2.0.0"

@@ -8,10 +8,16 @@ import Projects from './projects/page';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [hasInitialLoad, setHasInitialLoad] = useState(false);
 
   useEffect(() => {
+    // Check sessionStorage only after component mounts on client side
+    const initialLoad = sessionStorage.getItem('initialLoad');
+    setHasInitialLoad(initialLoad === 'true');
+
     const timer = setTimeout(() => {
       setIsLoading(false);
+      sessionStorage.setItem('initialLoad', 'true');
     }, 2000); // 2 second delay
 
     return () => clearTimeout(timer);
@@ -19,7 +25,7 @@ export default function Home() {
 
   return (
     <>
-      {isLoading ? (
+      {isLoading && !hasInitialLoad ? (
         <LoadingContainer>
           <LogoWrapper>
             <Image
@@ -32,7 +38,7 @@ export default function Home() {
           </LogoWrapper>
         </LoadingContainer>
       ) : null}
-      <div style={{ visibility: isLoading ? 'hidden' : 'visible' }}>
+      <div style={{ visibility: isLoading && !hasInitialLoad ? 'hidden' : 'visible' }}>
         <Header/>
         <main className="min-h-screen flex flex-col items-center justify-center bg-white max-w-screen">
           <Projects />
