@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import ThemeSwitch from './components/ThemeSwitch';
 
 export default function Header() {
   const pathname = usePathname();
@@ -23,30 +24,7 @@ export default function Header() {
       pathname === '/about' ? 'bg-black' : 'bg-white'
     }`}>
       <div className="max-w-[1400px] mx-auto px-8 py-6 flex justify-center items-center">
-        <nav>
-          <ul className="flex gap-8">
-            <li>
-              <Link 
-                href="/" 
-                className={`hover:opacity-80 transition-opacity font-['Neue_Haas_Display_Black'] ${
-                  pathname === '/about' ? 'text-white' : 'text-black'
-                } ${pathname === '/' ? 'opacity-100' : 'opacity-50'}`}
-              >
-                WORK
-              </Link>
-            </li>
-            <li>
-              <Link 
-                href="/about" 
-                className={`hover:opacity-80 transition-opacity font-['Neue_Haas_Display_Black'] ${
-                  pathname === '/about' ? 'text-white' : 'text-black'
-                } ${pathname === '/about' ? 'opacity-100' : 'opacity-50'}`}
-              >
-                ABOUT
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        <ThemeSwitch />
       </div>
     </header>
   );
