@@ -229,31 +229,33 @@ export default function Projects() {
           ref={stickyCards}
           className="sticky-cards relative w-screen h-screen bg-[#0101010] flex-col flex items-center justify-center"
         >
-          <div className="text-container text-black fixed top-0 pt-[14vh] flex flex-col items-center justify-center px-4 md:px-0">
-            <span
-              ref={yearRef}
-              className="text-xs font-light leading-none uppercase self-end block opacity-100 transition-opacity duration-300"
-            >
-              {data[3]?.year}
-            </span>
-            <h1
-              ref={titleRef}
-              className="text-3xl md:text-6xl lg:text-8xl font-bold leading-none uppercase block opacity-100 transition-opacity duration-300 text-center"
-            >
-              {data[3]?.title}
-            </h1>
-            <div
-              ref={categoriesRef}
-              className="flex w-full max-w-full gap-4 flex-wrap opacity-100 transition-opacity duration-300"
-            >
-              {data[3]?.categories.map((category, index) => (
-                <span
-                  key={index}
-                  className="text-[10px] md:text-xs font-light leading-none uppercase"
-                >
-                  {category}
-                </span>
-              ))}
+          <span
+            ref={yearRef}
+            className="text-xs font-light leading-none uppercase fixed top-0 right-0 pt-[14vh] pr-4 md:pr-8 block opacity-100 transition-opacity duration-300"
+          >
+            {data[3]?.year}
+          </span>
+          <div className="text-container text-black fixed top-0 pt-[14vh] flex flex-col items-center justify-center w-full px-4 md:px-8">
+            <div className="relative flex flex-col items-start max-w-[90vw] md:max-w-[80vw]">
+              <h1
+                ref={titleRef}
+                className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold leading-tight uppercase block opacity-100 transition-opacity duration-300 w-full"
+              >
+                {data[3]?.title}
+              </h1>
+              <div
+                ref={categoriesRef}
+                className="flex flex-wrap gap-2 md:gap-4 mt-4 opacity-100 transition-opacity duration-300"
+              >
+                {data[3]?.categories.map((category, index) => (
+                  <span
+                    key={index}
+                    className="text-[10px] md:text-xs font-light leading-none uppercase tracking-wider"
+                  >
+                    {category}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
