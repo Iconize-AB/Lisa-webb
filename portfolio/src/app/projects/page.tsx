@@ -244,7 +244,7 @@ export default function Projects() {
             </h1>
             <div
               ref={categoriesRef}
-              className="flex items-center justify-center md:justify-between w-full max-w-xl gap-2 flex-wrap opacity-100 transition-opacity duration-300"
+              className="flex w-full max-w-full gap-4 flex-wrap opacity-100 transition-opacity duration-300"
             >
               {data[3]?.categories.map((category, index) => (
                 <span
