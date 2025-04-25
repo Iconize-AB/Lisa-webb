@@ -1,7 +1,7 @@
 .switch {
   background-color: black;
-  width: 80px;  /* Increased width to accommodate text */
-  height: 65px;
+  width: 65px;  /* Reduced from 80px */
+  height: 50px;  /* Reduced from 65px */
   box-shadow:
      0 0 10px 2px rgba(0, 0, 0, 0.2),
     0 0 1px 2px black,
@@ -9,7 +9,7 @@
     inset 0 0 2px 15px #47434c,
     inset 0 0 2px 22px black;
   border-radius: 5px;
-  padding: 7px;
+  padding: 5px;  /* Reduced from 7px */
   perspective: 700px;
   display: block;
   position: relative;
@@ -106,7 +106,7 @@
   align-items: center;
   color: white;
   font-family: "Neue Haas Display Black", sans-serif;
-  font-size: 12px;
+  font-size: 10px;  /* Reduced from 12px */
   text-transform: uppercase;
 }
 
@@ -178,21 +178,21 @@
 /* Add responsive sizing for desktop */
 @media screen and (min-width: 768px) {
   .switch {
-    width: 120px;  /* Increased for better text visibility */
-    height: 115px;
-    padding: 12px;
+    width: 90px;  /* Reduced from 120px */
+    height: 85px;  /* Reduced from 115px */
+    padding: 8px;  /* Reduced from 12px */
   }
 
   .characters {
-    font-size: 16px; /* Larger text for desktop */
+    font-size: 14px; /* Reduced from 16px */
   }
 
   .button:before,
   .button:after {
-    height: 100px;
+    height: 75px;  /* Reduced from 100px */
   }
 
   .button:after {
-    transform: translatey(100px) rotatex(-90deg);
+    transform: translatey(75px) rotatex(-90deg);  /* Adjusted to match new height */
   }
 } 
