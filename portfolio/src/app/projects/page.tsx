@@ -38,9 +38,9 @@ export default function Projects() {
         scale: (index: number) => {
           const baseScale = 0.5 + (index / (lovedNumberforCards - 1)) * 0.5;
           if (isMobile) {
-            return [baseScale + 0.3, baseScale]; // [width, height]
+            return baseScale + 0.3; // Just return a single scale value
           }
-          return baseScale; // Same scale for both dimensions on desktop
+          return baseScale;
         },
         yPercent: (index: number) => (index / (lovedNumberforCards - 1)) * 100,
       };
@@ -65,10 +65,12 @@ export default function Projects() {
 
         gsap.set(cards[i], {
           yPercent,
-          scale: scale,
-          scaleX: Array.isArray(scale) ? scale[0] : scale, // Apply width scale
-          scaleY: Array.isArray(scale) ? scale[1] : scale, // Apply height scale
+          scale,
           opacity: 1,
+          ...(isMobile && {
+            scaleX: scale + 0.3,
+            scaleY: scale
+          })
         });
 
         if (i > cardsPerView - 1) {
@@ -125,6 +127,10 @@ export default function Projects() {
             {
               yPercent: yPercent(shiftedIndex),
               scale: scale(shiftedIndex),
+              ...(isMobile && {
+                scaleX: scale(shiftedIndex) + 0.3,
+                scaleY: scale(shiftedIndex)
+              }),
               opacity: 1,
               duration: 1,
               ease: "none",
