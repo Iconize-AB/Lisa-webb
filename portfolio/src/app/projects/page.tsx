@@ -237,11 +237,11 @@ export default function Projects() {
         >
           <span
             ref={yearRef}
-            className="text-xs font-light leading-none uppercase fixed top-0 right-0 pt-[14vh] pr-4 md:pr-8 block opacity-100 transition-opacity duration-300"
+            className="text-xs font-light leading-none uppercase fixed top-0 right-0 pt-[15vh] pr-4 md:pr-8 block opacity-100 transition-opacity duration-300"
           >
             {data[3]?.year}
           </span>
-          <div className="text-container text-black fixed top-0 pt-[14vh] flex flex-col items-center justify-center w-full px-4 md:px-8">
+          <div className="text-container text-black fixed top-0 pt-[14.5vh] flex flex-col items-center justify-center w-full px-4 md:px-8">
             <div className="relative flex flex-col items-start max-w-[90vw] md:max-w-[80vw]">
               <h1
                 ref={titleRef}
