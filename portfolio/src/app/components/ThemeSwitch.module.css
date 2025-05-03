@@ -59,7 +59,7 @@
       #650000 75%, #320000) 50% 50%/97% 97%, #b10000;
   background-repeat: no-repeat;
   width: 100%;
-  height: 50px;
+  height: 25px; /* Reduced so lever doesn't extend as far */
   transform-origin: top;
   transform: rotatex(-90deg);
   position: absolute;
@@ -189,10 +189,10 @@
 
   .button:before,
   .button:after {
-    height: 80px;  /* Adjusted for new shape */
+    height: 55px;  /* Adjusted for new shape */
   }
 
   .button:after {
-    transform: translatey(80px) rotatex(-90deg);  /* Adjusted to match new height */
+    transform: translatey(55px) rotatex(-90deg);  /* Adjusted to match new height */
   }
 } 
