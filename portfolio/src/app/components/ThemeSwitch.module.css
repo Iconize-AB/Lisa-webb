@@ -189,10 +189,10 @@
 
   .button:before,
   .button:after {
-    height: 55px;  /* Adjusted for new shape */
+    height: 35px;  /* Adjusted for new shape */
   }
 
   .button:after {
-    transform: translatey(55px) rotatex(-90deg);  /* Adjusted to match new height */
+    transform: translatey(35px) rotatex(-90deg);  /* Adjusted to match new height */
   }
 } 
